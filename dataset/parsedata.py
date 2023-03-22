@@ -52,7 +52,6 @@ def main(args):
         other than 0
             program fails to completely run
     """
-
     dataset = load("zoo2.csv")
     nt = generate_NT(dataset)
 
@@ -80,6 +79,18 @@ def load(filename):
     return dataset
 
 def generate_NT(dataset):
+    """
+        Generate a N-Triples version of the given zoo dataset
+
+        Parameters
+        ----------
+        dataset
+            dataset file loaded list
+        Returns
+        ----------
+        nt
+            N-Triples dataset conversion
+    """
     nt = []
 
     extract_class(nt)
@@ -91,6 +102,14 @@ def generate_NT(dataset):
     return nt
 
 def extract_class(nt):
+    """
+        Extract class to N-Triples list
+
+        Parameters
+        ----------
+        nt
+            N-Triples dataset
+    """
     for key, value in class_list.items():
         # (class_id pred_class class_name)
         temp = base_URI + class_id_URI + str(key) + '> '
@@ -99,6 +118,14 @@ def extract_class(nt):
         nt.append(temp)
 
 def extract_nurturing(nt):
+    """
+        Extract nurturing to N-Triples list
+
+        Parameters
+        ----------
+        nt
+            N-Triples dataset
+    """
     for key, value in nurturing_list.items():
         # (nurturing_id pred_nurturing nurturing_name)
         temp = base_URI + nurt_id_URI + str(key) + '> '
@@ -107,6 +134,16 @@ def extract_nurturing(nt):
         nt.append(temp)
 
 def extract_animals(nt, dataset):
+    """
+        Extract animals to N-Triples list
+
+        Parameters
+        ----------
+        nt
+            N-Triples dataset
+        dataset
+            dataset file loaded list
+    """
     for i in range(1, len(dataset)):
         # (animal_id pred_id animal_name)
         temp = base_URI + animal_id_URI + dataset[i][0].replace(' ','_') + '> '
@@ -206,16 +243,19 @@ def extract_animals(nt, dataset):
             temp += '"Aquatic"' + ' .'
             nt.append(temp)
 
+def save_NT(nt):
+    """
+        Save a nt dataset file
 
-
-
-def save_NT(dataset):
+        Parameters
+        ----------
+        nt
+            N-Triples list to be saved
+    """
     f = open('zoo.nt','w')
-    for data in dataset:
+    for data in nt:
         f.write(str(data) + "\n")
     f.close()
-
-    return
 
 # main entry point
 if __name__ == '__main__':
