@@ -27,12 +27,12 @@ animal_id_URI = 'animal/id/'
 class_id_URI = 'class/id/'
 nurt_id_URI = 'nurt/id/'
 
-name_pred_URI = 'pred/name/'
-class_pred_URI = 'pred/class/'
-nurt_pred_URI = 'pred/nurt/'
-legs_pred_URI = 'pred/legs/'
-has_pred_URI = 'pred/has/'
-is_pred_URI = 'pred/is/'
+name_pred_URI = 'pred/name'
+class_pred_URI = 'pred/class'
+nurt_pred_URI = 'pred/nurt'
+legs_pred_URI = 'pred/legs'
+has_pred_URI = 'pred/has'
+is_pred_URI = 'pred/is'
 
 class_list = { 1: '"Mammal"', 2: '"Bird"', 3: '"Reptil"', 4: '"Fish"', 5: '"Amphibian"', 6: '"Insect"', 7: '"Invertebrate"' }
 nurturing_list = { 1: '"Eggs"', 2:'"Milk"' }
