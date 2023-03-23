@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from animalsapp import views
+from animalscouter import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
