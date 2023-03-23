@@ -1,0 +1,10 @@
+base <http://zoo.org/>
+prefix pred: <http://zoo.org/pred/>
+
+#All animals from a specific class
+select ?name
+where { 
+    ?class_s pred:name "Reptil" .
+    ?animal_s pred:class ?class_s .
+    ?animal_s pred:name ?name .
+}
