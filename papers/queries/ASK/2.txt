@@ -1,0 +1,8 @@
+BASE <http://zoo.org/>
+PREFIX pred: <http://zoo.org/pred/>
+
+#Ask if a animal is toothed
+ASK { 
+    ?animal_s pred:name 'Turtle' .
+    ?animal_s pred:is 'Toothed' .
+}

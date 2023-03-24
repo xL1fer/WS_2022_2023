@@ -1,0 +1,8 @@
+BASE <http://zoo.org/>
+PREFIX pred: <http://zoo.org/pred/>
+
+#Ask if a animal is venomous
+ASK { 
+    ?animal_s pred:name 'Spider' .
+    ?animal_s pred:is 'Venomous' .
+}
