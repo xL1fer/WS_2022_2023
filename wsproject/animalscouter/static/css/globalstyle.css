@@ -88,9 +88,6 @@ select:hover {
     cursor: pointer;
 }
 
-select:focus {
-}
-
 .a-item {
     margin: 0.6% 0;
 }
@@ -102,6 +99,7 @@ select:focus {
 
 .column {
     float: left;
+    text-align: center;
     width: 50%;
 }
 
@@ -113,5 +111,5 @@ select:focus {
 }
 
 .column .a-item {
-    font-size: 1.5rem;
+    /*font-size: 1.5rem;*/
 }

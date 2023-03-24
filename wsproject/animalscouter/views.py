@@ -39,7 +39,7 @@ def queries(request):
     animal_nurturing_form = AnimalNurturingForm(request.POST)
     animal_legs_form = AnimalLegsForm(request.POST)
 
-    #print(request.POST)
+    print(request.POST)
 
     # user selected an animal class
     if 'animal_class' in request.POST:
@@ -65,7 +65,7 @@ def queries(request):
         request.session['animal_list'] = []
         request.session['animal_description'] = {}
         for e in res['results']['bindings']:
-            request.session['animal_list'].append(e['animal_name']['value'])
+            request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': animal_class_form, 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
     
@@ -116,7 +116,7 @@ def queries(request):
         request.session['animal_list'] = []
         request.session['animal_description'] = {}
         for e in res['results']['bindings']:
-            request.session['animal_list'].append(e['animal_name']['value'])
+            request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': AnimalLegsForm() })
 
@@ -158,7 +158,7 @@ def queries(request):
         request.session['animal_list'] = []
         request.session['animal_description'] = {}
         for e in res['results']['bindings']:
-            request.session['animal_list'].append(e['animal_name']['value'])
+            request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm() , 'animal_legs_form': animal_legs_form })
     
@@ -174,7 +174,7 @@ def queries(request):
                 }
                 """
         
-        query = query.replace("_animal_name", request.POST['animal_item'])
+        query = query.replace("_animal_name", request.POST['animal_item'].replace("_", " "))
 
         payload_query = { "query": query }
         res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
@@ -189,7 +189,7 @@ def queries(request):
 
             key = e['p']['value'].split("/")[-1]
 
-            print(key)
+            #print(key)
 
             if key == "class":
                 class_query = """
