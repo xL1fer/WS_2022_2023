@@ -20,4 +20,7 @@ from animalscouter import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('configs', views.configs, name='configs'),
+    path('queries', views.queries, name='queries'),
+    path('ask', views.ask, name='ask'),
 ]

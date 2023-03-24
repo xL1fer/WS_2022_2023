@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="m-title">[ Queries ]</h1>
+
+<form id="reset_form" method="post" enctype="multipart/form-data" class="center" style="text-align: center; text-decoration: underline; ">
+    {% csrf_token %}
+    <div class="a-item">
+        <a onclick="document.getElementById('reset_form').submit();">Reset</a>
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_class_form.animal_class}}
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_nurturing_form.animal_nurturing}}
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_legs_form.animal_legs}}
+    </div>
+</form>
+
+<div class="row">
+    <!-- retrieved animals list -->
+    <div class="column">
+        {% if session.animal_list %}
+            Scouted Animals
+        {% endif %}
+
+        {% for a in session.animal_list%}
+        <form id="animal_{{a}}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="a-item">
+                <input type="hidden" name="animal_item" value={{a}} />
+                <a onclick="document.getElementById('animal_{{a}}').submit();">{{ a }}</a>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+    <!-- selected animal description -->
+    <div class="column">
+        {% if session.animal_description %}
+            <p>Animal Description</p>
+        {% endif %}
+
+        {% for d in session.animal_description %}
+        <div>
+            {{ d.0 }} <span style="font-weight: bold;">{{ d.1 }}</span>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
