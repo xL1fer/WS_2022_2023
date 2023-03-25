@@ -3,30 +3,39 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Django</h1>
-    <p class="lead">Django is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1>Animal Scouter</h1>
+    <p class="lead">Developed in the context of the first project of Semantic Web (WS)<br>
+        Engineering Masters 2023
+    </p>
+    <p><a href="https://www.ua.pt/pt/deti" target="_blank" class="btn btn-primary btn-large">University of Aveiro</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Configs</h2>
         <p>
-            Django gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Provides users with the ability to manage and update the database.Allows users to add or remove data to and from the 
+            database. Users can enter new information into the database, such as new animals or new categories and also 
+            delete data deemed outdated or inaccurate.
         </p>
-        <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" href="{% url 'configs' %}">Any new species?</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+        <h2>Queries</h2>
+        <p>
+            Presents drop-down menus, users can select a particular group of animals they are interested in, such as animal class, type of nurturing
+            or number of legs. Users can then click on the name of an individual animal to access all the information stored about that animal.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'queries' %}">Try it out!</a></p>
     </div>
     <div class="col-md-4">
-        <h2>pythonanywhere</h2>
-        <p>Host, run, and code Python in the cloud!</p>
-        <p><a class="btn btn-default" href="https://www.pythonanywhere.com/">Learn more &raquo;</a></p>
+        <h2>Ask</h2>
+        <p>
+            A simple and intuitive way to inquire about the presence of specific features or attributes in different animals within 
+            the database. By selecting an attribute such as "venomous" and typing in the name of the animal, users can 
+            submit a query and receive information about whether or not it is true.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'ask' %}">Try it here!</a></p>
     </div>
 </div>
 
