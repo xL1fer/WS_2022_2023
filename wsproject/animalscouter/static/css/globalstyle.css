@@ -113,3 +113,26 @@ select:hover {
 .column .a-item {
     /*font-size: 1.5rem;*/
 }
+
+/************************************************/
+/*               Ask Page Styling               */
+/************************************************/
+
+.ask-form select, .ask-form input {
+    padding: 2% 0;
+    width: 46%;
+    border-radius: 7px;
+    text-align-last:center;
+    border: 1px solid gray;
+    display: inline;
+}
+
+.ask-response {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    font-size: 3rem;
+    background-color: rgb(214, 83, 83);
+    color: white;
+}

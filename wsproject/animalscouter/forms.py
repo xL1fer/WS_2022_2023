@@ -49,7 +49,7 @@ class CustomSelect(forms.Select):
                 for k, v in custom_attr.items():
                     option_attrs.update({k: v})
 
-        self.attrs = {"onChange": "form.submit();"}
+        #self.attrs = {"onChange": "form.submit();"}
 
         return {
             'name': name,
@@ -84,3 +84,25 @@ class AnimalLegsForm(forms.Form):
     
     # submit form on select item change
     animal_legs.widget.attrs.update(onChange="form.submit();")
+
+question_list = [
+    (-1, 'Select Animal Question'),
+    ('has_tail', 'Has tail'),
+    ('has_fins', 'Has fins'),
+    ('has_feathers', 'Has feathers'),
+    ('has_hair', 'Has hair'),
+    ('is_domestic', 'Is domestic'),
+    ('is_venomous', 'Is venomous'),
+    ('is_toothed', 'Is toothed'),
+    ('is_airborne', 'Is airborne'),
+    ('is_aquatic', 'Is aquatic'),
+    ]
+
+class AnimalAskForm(forms.Form):
+    animal_question = forms.ChoiceField(choices=question_list, 
+                                   widget=CustomSelect)
+    
+    # submit form on select item change
+    animal_question.widget.attrs.update(onChange="form.submit();")
+
+    animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))

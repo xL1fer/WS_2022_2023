@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from datetime import datetime
-from .forms import AnimalClassForm, AnimalNurturingForm, AnimalLegsForm          # import forms
+from .forms import AnimalClassForm, AnimalNurturingForm, AnimalLegsForm, AnimalAskForm          # import forms
 
 """
     GraphDB related imports and initializations
@@ -250,5 +250,32 @@ def queries(request):
 def ask(request):
     """Renders the ask page."""
     assert isinstance(request, HttpRequest)
-    
-    return render(request, 'ask.html')
+
+    animal_ask_form = AnimalAskForm(request.POST)
+
+    print(request.POST)
+
+    if 'animal_question' in request.POST:
+        query = """
+                base <http://zoo.org/>
+                prefix pred: <http://zoo.org/pred/>
+                ask { 
+                    ?animal_s pred:name "_animal_name".
+                    ?animal_s pred:_pred "_animal_attribute".
+                }
+                """
+        
+        animal_question = request.POST['animal_question']
+        
+        query = query.replace("_animal_name", request.POST['animal_name'])
+        query = query.replace("_pred", animal_question.split("_")[0])
+        query = query.replace("_animal_attribute", animal_question.split("_")[1].title())
+
+        payload_query = { "query": query }
+        res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
+
+        res = json.loads(res)
+
+        return render(request, 'ask.html', { 'ask_response': res['boolean'], 'animal_ask_form': animal_ask_form })
+
+    return render(request, 'ask.html', { 'animal_ask_form': animal_ask_form })
