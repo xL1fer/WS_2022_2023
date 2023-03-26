@@ -135,4 +135,17 @@ select:hover {
     font-size: 3rem;
     background-color: rgb(214, 83, 83);
     color: white;
+
+
+/************************************************/
+/*             Config Page Styling              */
+/************************************************/
+
+button {
+    color: black;
+    background-color: lightgrey;
+}
+button:hover{
+    cursor: pointer;
+    background-color: grey;
 }

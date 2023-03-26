@@ -105,4 +105,39 @@ class AnimalAskForm(forms.Form):
     # submit form on select item change
     animal_question.widget.attrs.update(onChange="form.submit();")
 
+class InsertAnimalForm(forms.Form):
+    CLASS_ANIMAL = (
+        (1, 'Mammal'),
+        (2, 'Bird'),
+        (3, 'Reptil'),
+        (4, 'Fish'),
+        (5, 'Amphibian'),
+        (6, 'Insect'),
+        (7, 'Invertebrate')
+    )
+    animal_class = forms.ChoiceField(choices=CLASS_ANIMAL, widget=forms.Select)
+
+    animal_domestic = forms.BooleanField(required=False)
+    animal_toothed = forms.BooleanField(required=False)
+    animal_venomous = forms.BooleanField(required=False)
+    animal_aquatic = forms.BooleanField(required=False)
+    animal_airborne = forms.BooleanField(required=False)
+
+    animal_tail = forms.BooleanField(required=False)
+    animal_fins = forms.BooleanField(required=False)
+    animal_feathers = forms.BooleanField(required=False)
+    animal_hair = forms.BooleanField(required=False)
+
+    animal_milk = forms.BooleanField(required=False)
+    animal_eggs = forms.BooleanField(required=False)
+
+    LEGS_NUM = (
+        (0, '0'),
+        (2, '2'),
+        (4, '4'),
+        (6, '6'),
+        (8, '8')
+    )
+    animal_legs = forms.ChoiceField(choices=LEGS_NUM, widget=forms.Select)
+
     animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
