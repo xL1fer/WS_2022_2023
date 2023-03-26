@@ -1,6 +1,6 @@
 <http://zoo.org/class/id/1> <http://zoo.org/pred/name> "Mammal" .
 <http://zoo.org/class/id/2> <http://zoo.org/pred/name> "Bird" .
-<http://zoo.org/class/id/3> <http://zoo.org/pred/name> "Reptil" .
+<http://zoo.org/class/id/3> <http://zoo.org/pred/name> "Reptile" .
 <http://zoo.org/class/id/4> <http://zoo.org/pred/name> "Fish" .
 <http://zoo.org/class/id/5> <http://zoo.org/pred/name> "Amphibian" .
 <http://zoo.org/class/id/6> <http://zoo.org/pred/name> "Insect" .
