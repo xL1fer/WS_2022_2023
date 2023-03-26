@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from datetime import datetime
-from .forms import AnimalClassForm, AnimalNurturingForm, AnimalLegsForm          # import forms
+from .forms import InsertAnimalForm, AnimalClassForm, AnimalNurturingForm, AnimalLegsForm          # import forms
 
 """
     GraphDB related imports and initializations
@@ -28,8 +28,63 @@ def index(request):
 def configs(request):
     """Renders the configs page."""
     assert isinstance(request, HttpRequest)
+
+    insert_animal_form = InsertAnimalForm(request.POST)
+    print(request.POST)
+
+    if 'animal_name' in request.POST and 'animal_class' in request.POST:
+        update = """
+                base <http://zoo.org/>
+                prefix id: <http://zoo.org/animal/id/>
+                prefix pred: <http://zoo.org/pred/>
+                prefix class: <http://zoo.org/class/id/>
+                prefix nurt: <http://zoo.org/nurt/id/>
+                insert data {
+                    id:_name_id pred:name "_animal_name".
+                    id:_name_id pred:class class:_class_id.
+                """
+
+        name_id = request.POST['animal_name']
+        name_id = name_id.replace(" ", "_").lower()
+
+        if 'animal_domestic' in request.POST:
+            update += """id:_name_id pred:is "Domestic".\n"""
+        if 'animal_toothed' in request.POST:
+            update += """id:_name_id pred:is "Toothed".\n"""
+        if 'animal_venomous' in request.POST:
+            update += """id:_name_id pred:is "Venomous".\n"""
+        if 'animal_aquatic' in request.POST:
+            update += """id:_name_id pred:is "Aquatic".\n"""
+        if 'animal_airborne' in request.POST:
+            update += """id:_name_id pred:is "Airborne".\n"""
+        if 'animal_milk' in request.POST:
+            update += """id:_name_id pred:nurt nurt:2.\n"""
+        if 'animal_eggs' in request.POST:
+            update += """id:_name_id pred:nurt nurt:1.\n"""
+        if 'animal_tail' in request.POST:
+            update += """id:_name_id pred:has "Tail".\n"""
+        if 'animal_fins' in request.POST:
+            update += """id:_name_id pred:has "Fins".\n"""
+        if 'animal_feathers' in request.POST:
+            update += """id:_name_id pred:has "Feathers".\n"""
+        if 'animal_hair' in request.POST:
+            update += """id:_name_id pred:has "Hair".\n"""
+        if 'animal_legs' in request.POST and request.POST['animal_legs'] != '0':
+            update += """id:_name_id pred:legs "%s".\n""" % request.POST['animal_legs']
+
+        update += "}"
+
+        update = update.replace("_name_id", name_id)
+        update = update.replace("_animal_name", request.POST['animal_name'].title())
+        update = update.replace("_class_id", request.POST['animal_class'])
+
+        print(update)
+
+        payload_query = {"update": update}
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
     
-    return render(request, 'configs.html')
+    return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': insert_animal_form })
 
 def queries(request):
     """Renders the queries page."""

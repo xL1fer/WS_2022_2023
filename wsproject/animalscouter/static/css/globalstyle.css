@@ -113,3 +113,18 @@ select:hover {
 .column .a-item {
     /*font-size: 1.5rem;*/
 }
+
+
+
+/************************************************/
+/*             Config Page Styling              */
+/************************************************/
+
+button {
+    color: black;
+    background-color: lightgrey;
+}
+button:hover{
+    cursor: pointer;
+    background-color: grey;
+}
