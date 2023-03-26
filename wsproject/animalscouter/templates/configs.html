@@ -4,59 +4,81 @@
 
 <h1 class="m-title">[ Configs ]</h1>
 
-
+<h2 class="s-title">< Insert ></h2>
 
 <form enctype="multipart/form-data" method="post" class="center">
     {% csrf_token %}
-    <label for="animal_class">Type</label>
     {{insert_animal_form.animal_class}}
-    <label for="animal_name">Name</label>
-    {{insert_animal_form.animal_name}}
-    <br>
-    {{insert_animal_form.animal_domestic}}
-    <label for="domestic">Domestic</label>
-    <br>
-    {{insert_animal_form.animal_toothed}}
-    <label for="html">Toothed</label>
-    <br>
-    {{insert_animal_form.animal_venomous}}
-    <label for="html">Venomous</label>
-    <br>
-    {{insert_animal_form.animal_aquatic}}
-    <label for="html">Aquatic</label>
-    <br>
-    {{insert_animal_form.animal_airborne}}
-    <label for="html">Airborne</label>
-    <br>
-    <br>
-    {{insert_animal_form.animal_milk}}
-    <label for="html">Milk</label>
-    <br>
-    {{insert_animal_form.animal_eggs}}
-    <label for="html">Eggs</label>
-    <br>
-    <br>
-    {{insert_animal_form.animal_tail}}
-    <label for="html">Tail</label>
-    <br>
-    {{insert_animal_form.animal_fins}}
-    <label for="html">Fins</label>
-    <br>
-    {{insert_animal_form.animal_feathers}}
-    <label for="html">Feathers</label>
-    <br>
-    {{insert_animal_form.animal_hair}}
-    <label for="html">Hair</label>
-    <br>
-    <br>
-    <label for="html">Legs number</label>
-    {{insert_animal_form.animal_legs}}
-    <br>
-    <button class="insert" id="insert_form">
-        <a onclick="document.getElementById('insert_form').submit();">Insert</a>
-    </button>
+
+    <div class="center" style="margin-top: 3%; text-align: center;">
+        {{insert_animal_form.insert_animal_name}}
+    </div>
+
+    <div class="row" style="margin-top: 3%;">
+        <span class="column-3" style="margin-left:5%;">
+            {{insert_animal_form.animal_domestic}}
+            <label for="domestic">Domestic</label>
+            <br>
+            {{insert_animal_form.animal_toothed}}
+            <label for="html">Toothed</label>
+            <br>
+            {{insert_animal_form.animal_venomous}}
+            <label for="html">Venomous</label>
+            <br>
+            {{insert_animal_form.animal_aquatic}}
+            <label for="html">Aquatic</label>
+            <br>
+            {{insert_animal_form.animal_airborne}}
+            <label for="html">Airborne</label>
+        </span>
+        <span class="column-3">
+            {{insert_animal_form.animal_tail}}
+            <label for="html">Tail</label>
+            <br>
+            {{insert_animal_form.animal_fins}}
+            <label for="html">Fins</label>
+            <br>
+            {{insert_animal_form.animal_feathers}}
+            <label for="html">Feathers</label>
+            <br>
+            {{insert_animal_form.animal_hair}}
+            <label for="html">Hair</label>
+            <br>
+        </span>
+        <span class="column-3">
+            {{insert_animal_form.animal_milk}}
+            <label for="html">Milk</label>
+            <br>
+            {{insert_animal_form.animal_eggs}}
+            <label for="html">Eggs</label>
+            <br>
+        </span>
+    </div>
+    
+    <div style="margin-top: 3%;">
+        {{insert_animal_form.animal_legs}}
+    </div>
+
+    <div class="center" style="text-align: center;">
+        <button type="submit" id="insert_form" style="margin-top: 3%;">Insert</button>
+    </div>
 </form>
 
+<hr/>
+<br/>
 
+<h2 class="s-title">< Delete ></h2>
+
+<form enctype="multipart/form-data" method="post" class="center">
+    {% csrf_token %}
+    
+    <div class="center" style="margin-top: 3%; text-align: center;">
+        {{delete_animal_form.delete_animal_name}}
+    </div>
+
+    <div class="center" style="text-align: center;">
+        <button type="submit" id="insert_form" style="margin-top: 3%;">Delete</button>
+    </div>
+</form>
 
 {% endblock %}

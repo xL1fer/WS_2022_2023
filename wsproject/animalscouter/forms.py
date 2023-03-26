@@ -1,11 +1,15 @@
 from django import forms
 from django.forms import widgets
 
+"""
+    queries.html forms
+"""
+
 class_list = [
     (-1, 'Select Animal Class'),
     (1, 'Mammal'),
     (2, 'Bird'),
-    (3, 'Reptil'),
+    (3, 'Reptile'),
     (4, 'Fish'),
     (5, 'Amphibian'),
     (6, 'Insect'),
@@ -85,6 +89,10 @@ class AnimalLegsForm(forms.Form):
     # submit form on select item change
     animal_legs.widget.attrs.update(onChange="form.submit();")
 
+"""
+    ask.html forms
+"""
+
 question_list = [
     (-1, 'Select Animal Question'),
     ('has_tail', 'Has tail'),
@@ -105,17 +113,14 @@ class AnimalAskForm(forms.Form):
     # submit form on select item change
     animal_question.widget.attrs.update(onChange="form.submit();")
 
+    animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
+
+"""
+    configs.html forms
+"""
+
 class InsertAnimalForm(forms.Form):
-    CLASS_ANIMAL = (
-        (1, 'Mammal'),
-        (2, 'Bird'),
-        (3, 'Reptil'),
-        (4, 'Fish'),
-        (5, 'Amphibian'),
-        (6, 'Insect'),
-        (7, 'Invertebrate')
-    )
-    animal_class = forms.ChoiceField(choices=CLASS_ANIMAL, widget=forms.Select)
+    animal_class = forms.ChoiceField(choices=class_list, widget=CustomSelect)
 
     animal_domestic = forms.BooleanField(required=False)
     animal_toothed = forms.BooleanField(required=False)
@@ -131,13 +136,10 @@ class InsertAnimalForm(forms.Form):
     animal_milk = forms.BooleanField(required=False)
     animal_eggs = forms.BooleanField(required=False)
 
-    LEGS_NUM = (
-        (0, '0'),
-        (2, '2'),
-        (4, '4'),
-        (6, '6'),
-        (8, '8')
-    )
-    animal_legs = forms.ChoiceField(choices=LEGS_NUM, widget=forms.Select)
+    animal_legs = forms.ChoiceField(choices=legs_list, widget=CustomSelect)
 
-    animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
+    insert_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
+
+
+class DeleteAnimalForm(forms.Form):
+    delete_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))

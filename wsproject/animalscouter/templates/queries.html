@@ -44,7 +44,7 @@
             {% csrf_token %}
             <div class="a-item">
                 <input type="hidden" name="animal_item" value={{a.0}} />
-                <a onclick="document.getElementById('animal_{{a.0}}').submit();">{{ a.1 }}</a>
+                <a onclick="document.getElementById('animal_{{a.0}}').submit();">{{a.1}}</a>
             </div>
         </form>
         {% endfor %}
@@ -57,7 +57,7 @@
 
         {% for d in session.animal_description %}
         <div>
-            {{ d.0 }} <span style="font-weight: bold;">{{ d.1 }}</span>
+            {{d.0}} <span style="font-weight: bold;">{{d.1}}</span>
         </div>
         {% endfor %}
 

@@ -70,9 +70,14 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 5%;
 }
 
+.s-title {
+    font-size: 2.344rem;
+    text-align: center;
+}
+
 .center {
     margin: auto;
-    width: 50%;
+    width: 70%;
     /*border: 1px solid green;*/
     padding: 10px;
 }
@@ -81,7 +86,7 @@ select {
     padding: 2% 0;
     width: 100%;
     border-radius: 7px;
-    text-align-last:center;
+    text-align: center;
 }
 
 select:hover {
@@ -122,7 +127,7 @@ select:hover {
     padding: 2% 0;
     width: 46%;
     border-radius: 7px;
-    text-align-last:center;
+    text-align: center;
     border: 1px solid gray;
     display: inline;
 }
@@ -135,17 +140,31 @@ select:hover {
     font-size: 3rem;
     background-color: rgb(214, 83, 83);
     color: white;
-
+}
 
 /************************************************/
 /*             Config Page Styling              */
 /************************************************/
 
 button {
-    color: black;
     background-color: lightgrey;
+    border-radius: 7px;
+    border: 1px solid gray;
+    width: 40%;
 }
+
 button:hover{
     cursor: pointer;
-    background-color: grey;
+    background-color: rgb(180, 180, 180);
+}
+
+.column-3 {
+    float: left;
+    width: 31%;
+}
+
+input {
+    padding: 1% 0;
+    border: 1px solid gray;
+    text-align: center;
 }

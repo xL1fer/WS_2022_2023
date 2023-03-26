@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from datetime import datetime
 
-from .forms import AnimalClassForm, AnimalNurturingForm, AnimalLegsForm, AnimalAskForm, InsertAnimalForm    # import forms
+from .forms import AnimalClassForm, AnimalNurturingForm, AnimalLegsForm, AnimalAskForm, InsertAnimalForm, DeleteAnimalForm    # import forms
 
 """
     GraphDB related imports and initializations
@@ -30,10 +30,12 @@ def configs(request):
     """Renders the configs page."""
     assert isinstance(request, HttpRequest)
 
-    insert_animal_form = InsertAnimalForm(request.POST)
+    insert_animal_form = InsertAnimalForm()
+    delete_animal_form = DeleteAnimalForm()
     print(request.POST)
 
-    if 'animal_name' in request.POST and 'animal_class' in request.POST:
+    # insert animal
+    if 'insert_animal_name' in request.POST:
         update = """
                 base <http://zoo.org/>
                 prefix id: <http://zoo.org/animal/id/>
@@ -45,7 +47,7 @@ def configs(request):
                     id:_name_id pred:class class:_class_id.
                 """
 
-        name_id = request.POST['animal_name']
+        name_id = request.POST['insert_animal_name']
         name_id = name_id.replace(" ", "_").lower()
 
         if 'animal_domestic' in request.POST:
@@ -76,16 +78,31 @@ def configs(request):
         update += "}"
 
         update = update.replace("_name_id", name_id)
-        update = update.replace("_animal_name", request.POST['animal_name'].title())
+        update = update.replace("_animal_name", request.POST['insert_animal_name'].title())
         update = update.replace("_class_id", request.POST['animal_class'])
 
-        print(update)
+        #print(update)
 
         payload_query = {"update": update}
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
-    
-    return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': insert_animal_form })
+    # delete animal
+    if 'delete_animal_name' in request.POST:
+        update = """
+                base <http://zoo.org/>
+                prefix pred: <http://zoo.org/pred/>
+                delete { ?s ?p ?o }
+                where {
+                    ?s pred:name "_animal_name".
+                    ?s ?p ?o.
+                }
+                """
+        update = update.replace("_animal_name", request.POST['delete_animal_name'].title())
+
+        payload_query = {"update": update}
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+    return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': insert_animal_form, 'delete_animal_form': delete_animal_form })
 
 def queries(request):
     """Renders the queries page."""
@@ -95,7 +112,7 @@ def queries(request):
     animal_nurturing_form = AnimalNurturingForm(request.POST)
     animal_legs_form = AnimalLegsForm(request.POST)
 
-    print(request.POST)
+    #print(request.POST)
 
     # user selected an animal class
     if 'animal_class' in request.POST:
@@ -309,7 +326,7 @@ def ask(request):
 
     animal_ask_form = AnimalAskForm(request.POST)
 
-    print(request.POST)
+    #print(request.POST)
 
     if 'animal_question' in request.POST:
         query = """
