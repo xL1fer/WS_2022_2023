@@ -34,7 +34,7 @@ legs_pred_URI = 'pred/legs'
 has_pred_URI = 'pred/has'
 is_pred_URI = 'pred/is'
 
-class_list = { 1: '"Mammal"', 2: '"Bird"', 3: '"Reptil"', 4: '"Fish"', 5: '"Amphibian"', 6: '"Insect"', 7: '"Invertebrate"' }
+class_list = { 1: '"Mammal"', 2: '"Bird"', 3: '"Reptile"', 4: '"Fish"', 5: '"Amphibian"', 6: '"Insect"', 7: '"Invertebrate"' }
 nurturing_list = { 1: '"Eggs"', 2:'"Milk"' }
 
 def main(args):
