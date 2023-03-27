@@ -94,7 +94,7 @@ class AnimalLegsForm(forms.Form):
 """
 
 question_list = [
-    (-1, 'Select Animal Question'),
+    (-1, 'Select Question'),
     ('has_tail', 'Has tail'),
     ('has_fins', 'Has fins'),
     ('has_feathers', 'Has feathers'),

@@ -6,6 +6,10 @@
 
 <h2 class="s-title">< Insert ></h2>
 
+<div class="center">
+    {{insert_response}}
+</div>
+
 <form enctype="multipart/form-data" method="post" class="center">
     {% csrf_token %}
     {{insert_animal_form.animal_class}}
@@ -68,6 +72,10 @@
 <br/>
 
 <h2 class="s-title">< Delete ></h2>
+
+<div class="center">
+    {{delete_response}}
+</div>
 
 <form enctype="multipart/form-data" method="post" class="center">
     {% csrf_token %}

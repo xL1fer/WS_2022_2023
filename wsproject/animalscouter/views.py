@@ -30,12 +30,18 @@ def configs(request):
     """Renders the configs page."""
     assert isinstance(request, HttpRequest)
 
-    insert_animal_form = InsertAnimalForm()
-    delete_animal_form = DeleteAnimalForm()
+    insert_animal_form = InsertAnimalForm(request.POST)
+    delete_animal_form = DeleteAnimalForm(request.POST)
     print(request.POST)
 
     # insert animal
     if 'insert_animal_name' in request.POST:
+
+        if request.POST['animal_class'] == '-1' or request.POST['animal_legs'] == '-1':
+            insert_response = 'Error: class and legs fields must be chosen'
+
+            return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': insert_animal_form, 'delete_animal_form': delete_animal_form, 'insert_response': insert_response })
+                
         update = """
                 base <http://zoo.org/>
                 prefix id: <http://zoo.org/animal/id/>
@@ -86,6 +92,10 @@ def configs(request):
         payload_query = {"update": update}
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
+        insert_response = 'Animal "' + request.POST['insert_animal_name'].title() + '" inserted'
+
+        return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': InsertAnimalForm(), 'delete_animal_form': DeleteAnimalForm(), 'insert_response': insert_response })
+
     # delete animal
     if 'delete_animal_name' in request.POST:
         update = """
@@ -102,7 +112,11 @@ def configs(request):
         payload_query = {"update": update}
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
-    return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': insert_animal_form, 'delete_animal_form': delete_animal_form })
+        delete_response = 'Animal "' + request.POST['delete_animal_name'].title() + '" deleted'
+
+        return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': InsertAnimalForm(), 'delete_animal_form': DeleteAnimalForm(), 'delete_response': delete_response })
+
+    return render(request, 'configs.html', { 'session': request.session, 'insert_animal_form': InsertAnimalForm(), 'delete_animal_form': DeleteAnimalForm() })
 
 def queries(request):
     """Renders the queries page."""
