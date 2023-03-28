@@ -119,6 +119,18 @@ select:hover {
     /*font-size: 1.5rem;*/
 }
 
+a svg#v-logo-footer
+{
+	fill: grey;
+	height: 3.0em;
+	transition: fill 200ms;
+}
+
+a:hover svg#v-logo-footer
+{
+	fill: #4b423c;
+}
+
 /************************************************/
 /*               Ask Page Styling               */
 /************************************************/
@@ -151,6 +163,7 @@ button {
     border-radius: 7px;
     border: 1px solid gray;
     width: 40%;
+    transition: ease 200ms;
 }
 
 button:hover{
