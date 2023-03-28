@@ -52,7 +52,7 @@ def main(args):
         other than 0
             program fails to completely run
     """
-    dataset = load("zoo2.csv")
+    dataset = load("zoo.csv")
     nt = generate_NT(dataset)
 
     save_NT(nt)
