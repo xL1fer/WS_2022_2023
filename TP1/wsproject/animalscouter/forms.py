@@ -1,10 +1,6 @@
 from django import forms
 from django.forms import widgets
 
-"""
-    queries.html forms
-"""
-
 class_list = [
     (-1, 'Select Animal Class'),
     (1, 'Mammal'),
@@ -66,6 +62,39 @@ class CustomSelect(forms.Select):
             'template_name': self.option_template_name,
         }
 
+"""
+    configs.html forms
+"""
+
+class InsertAnimalForm(forms.Form):
+    animal_class = forms.ChoiceField(choices=class_list, widget=CustomSelect)
+
+    animal_domestic = forms.BooleanField(required=False)
+    animal_toothed = forms.BooleanField(required=False)
+    animal_venomous = forms.BooleanField(required=False)
+    animal_aquatic = forms.BooleanField(required=False)
+    animal_airborne = forms.BooleanField(required=False)
+
+    animal_tail = forms.BooleanField(required=False)
+    animal_fins = forms.BooleanField(required=False)
+    animal_feathers = forms.BooleanField(required=False)
+    animal_hair = forms.BooleanField(required=False)
+
+    animal_milk = forms.BooleanField(required=False)
+    animal_eggs = forms.BooleanField(required=False)
+
+    animal_legs = forms.ChoiceField(choices=legs_list, widget=CustomSelect)
+
+    insert_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
+
+
+class DeleteAnimalForm(forms.Form):
+    delete_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
+
+"""
+    queries.html forms
+"""
+
 class AnimalClassForm(forms.Form):
     animal_class = forms.ChoiceField(choices=class_list, 
                                    widget=CustomSelect)
@@ -114,32 +143,3 @@ class AnimalAskForm(forms.Form):
     animal_question.widget.attrs.update(onChange="form.submit();")
 
     animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
-
-"""
-    configs.html forms
-"""
-
-class InsertAnimalForm(forms.Form):
-    animal_class = forms.ChoiceField(choices=class_list, widget=CustomSelect)
-
-    animal_domestic = forms.BooleanField(required=False)
-    animal_toothed = forms.BooleanField(required=False)
-    animal_venomous = forms.BooleanField(required=False)
-    animal_aquatic = forms.BooleanField(required=False)
-    animal_airborne = forms.BooleanField(required=False)
-
-    animal_tail = forms.BooleanField(required=False)
-    animal_fins = forms.BooleanField(required=False)
-    animal_feathers = forms.BooleanField(required=False)
-    animal_hair = forms.BooleanField(required=False)
-
-    animal_milk = forms.BooleanField(required=False)
-    animal_eggs = forms.BooleanField(required=False)
-
-    animal_legs = forms.ChoiceField(choices=legs_list, widget=CustomSelect)
-
-    insert_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
-
-
-class DeleteAnimalForm(forms.Form):
-    delete_animal_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Animal Name'}))
