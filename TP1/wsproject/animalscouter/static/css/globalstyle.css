@@ -135,10 +135,18 @@ a:hover svg#v-logo-footer
 /*               Ask Page Styling               */
 /************************************************/
 
-.ask-form select, .ask-form input {
+.ask-form select {
     padding: 2% 0;
     width: 46%;
     border-radius: 7px;
+    text-align: center;
+    border: 1px solid gray;
+    display: inline;
+}
+
+.ask-form input {
+    padding: 2% 0;
+    width: 46%;
     text-align: center;
     border: 1px solid gray;
     display: inline;
