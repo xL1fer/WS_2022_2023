@@ -36,7 +36,7 @@
     <!-- retrieved animals list -->
     <div class="column">
         {% if session.animal_list %}
-            <p style="margin-top: 3%;">Scouted Animals</p>
+            <p style="margin-top: 3%;"><span style="font-weight: bold;">{{scout_description}}</span> Scouted Animals</p>
         {% endif %}
 
         {% for a in session.animal_list%}
@@ -57,7 +57,13 @@
 
         {% for d in session.animal_description %}
         <div>
-            {{d.0}} <span style="font-weight: bold;">{{d.1}}</span>
+            <form id="{{d.0}}_{{d.1}}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="a-item">
+                    <input type="hidden" name="{{d.0}}" value={{d.1}} />
+                    <a onclick="document.getElementById('{{d.0}}_{{d.1}}').submit();">{{d.0}} <span style="font-weight: bold;">{{d.1}}</span></a>
+                </div>
+            </form>
         </div>
         {% endfor %}
 

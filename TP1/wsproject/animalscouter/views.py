@@ -126,10 +126,18 @@ def queries(request):
     animal_nurturing_form = AnimalNurturingForm(request.POST)
     animal_legs_form = AnimalLegsForm(request.POST)
 
-    #print(request.POST)
+    print(request.POST)
 
     # user selected an animal class
     if 'animal_class' in request.POST:
+        class_dict = { '1': 'Mammal',
+                     '2': 'Bird',
+                     '3': 'Reptile',
+                     '4': 'Fish',
+                     '5': 'Amphibian',
+                     '6': 'Insect',
+                     '7': 'Invertebrate',
+                    }
         query = """
                 base <http://zoo.org/>
                 prefix pred: <http://zoo.org/pred/>
@@ -154,10 +162,17 @@ def queries(request):
         for e in res['results']['bindings']:
             request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
-        return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': animal_class_form, 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
+        scout_description = '"Class ' + class_dict[request.POST['animal_class']] + '"'
+
+        return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': animal_class_form, 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
     
     # user select an animal nurturing
     elif 'animal_nurturing' in request.POST:
+        nurt_dict = { '1': 'Eggs',
+                     '2': 'Milk',
+                     '3': 'Both'
+                    }
+
         query = """"""
         
         if int(request.POST['animal_nurturing']) < 3:
@@ -205,7 +220,9 @@ def queries(request):
         for e in res['results']['bindings']:
             request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
-        return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': AnimalLegsForm() })
+        scout_description = '"Nurturing ' + nurt_dict[request.POST['animal_nurturing']] + '"'
+
+        return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': AnimalLegsForm() })
 
     elif 'animal_legs' in request.POST:
         query = """"""
@@ -247,7 +264,9 @@ def queries(request):
         for e in res['results']['bindings']:
             request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
-        return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm() , 'animal_legs_form': animal_legs_form })
+        scout_description = '"' + request.POST['animal_legs'] + ' Legs"'
+
+        return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm() , 'animal_legs_form': animal_legs_form })
     
     elif 'animal_item' in request.POST:
         query = """
@@ -328,6 +347,57 @@ def queries(request):
         request.session['animal_description'] = description
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': animal_class_form, 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': animal_legs_form })
+    
+    elif 'Name' in request.POST or 'Class' in request.POST or 'Legs' in request.POST or 'Nurt' in request.POST or 'Has' in request.POST or 'Is' in request.POST:
+        obj_dict = { 'Mammal': '<http://zoo.org/class/id/1>',
+                    'Bird': '<http://zoo.org/class/id/2>',
+                    'Reptile': '<http://zoo.org/class/id/3>',
+                    'Fish': '<http://zoo.org/class/id/4>',
+                    'Amphibian': '<http://zoo.org/class/id/5>',
+                    'Insect': '<http://zoo.org/class/id/6>',
+                    'Invertebrate': '<http://zoo.org/class/id/7>',
+                    'Eggs': '<http://zoo.org/nurt/id/1>',
+                    'Milk': '<http://zoo.org/nurt/id/2>'
+                    }
+        
+        query = """
+                base <http://zoo.org/>
+                prefix pred: <http://zoo.org/pred/>
+                prefix class: <http://zoo.org/class/id/>
+                select ?animal_name
+                where {
+                    ?animal_id pred:_pred_name _obj_name.
+                    ?animal_id pred:name ?animal_name.
+                }
+                """
+        
+        pred = list(request.POST.keys())[1]
+        obj = ''
+
+        if pred == 'Class' or pred == 'Nurt':
+            obj += obj_dict[request.POST[pred]]
+        else:
+            obj += '"' + request.POST[pred] + '"'
+
+        query = query.replace("_pred_name", pred.lower())
+        query = query.replace("_obj_name", obj)
+
+        print(query)
+
+        payload_query = { "query": query }
+        res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
+
+        res = json.loads(res)
+
+        request.session['animal_list'] = []
+        request.session['animal_description'] = {}
+        for e in res['results']['bindings']:
+            request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
+
+        scout_description = '"'+ pred + ' ' + request.POST[pred] + '"'
+
+        return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
+
     else:
         request.session['animal_list'] = []
         request.session['animal_description'] = {}
