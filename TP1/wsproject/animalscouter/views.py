@@ -36,7 +36,6 @@ def configs(request):
 
     # insert animal
     if 'insert_animal_name' in request.POST:
-
         if request.POST['animal_class'] == '-1' or request.POST['animal_legs'] == '-1':
             insert_response = 'Error: class and legs fields must be chosen'
 
@@ -128,7 +127,7 @@ def queries(request):
 
     print(request.POST)
 
-    # user selected an animal class
+    # searching for animals by class
     if 'animal_class' in request.POST:
         class_dict = { '1': 'Mammal',
                      '2': 'Bird',
@@ -166,7 +165,7 @@ def queries(request):
 
         return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': animal_class_form, 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
     
-    # user select an animal nurturing
+    # searching for animals by nurturing
     elif 'animal_nurturing' in request.POST:
         nurt_dict = { '1': 'Eggs',
                      '2': 'Milk',
@@ -223,7 +222,8 @@ def queries(request):
         scout_description = '"Nurturing ' + nurt_dict[request.POST['animal_nurturing']] + '"'
 
         return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': AnimalLegsForm() })
-
+    
+    # searching for animals by number of legs
     elif 'animal_legs' in request.POST:
         query = """"""
 
@@ -268,6 +268,7 @@ def queries(request):
 
         return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm() , 'animal_legs_form': animal_legs_form })
     
+    # searching for all the characteristics of a specific animal
     elif 'animal_item' in request.POST:
         query = """
                 base <http://zoo.org/>
@@ -348,6 +349,7 @@ def queries(request):
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': animal_class_form, 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': animal_legs_form })
     
+    # searching for animals with a same specific characteristic as the scouted animal
     elif 'Name' in request.POST or 'Class' in request.POST or 'Legs' in request.POST or 'Nurt' in request.POST or 'Has' in request.POST or 'Is' in request.POST:
         obj_dict = { 'Mammal': '<http://zoo.org/class/id/1>',
                     'Bird': '<http://zoo.org/class/id/2>',
@@ -382,7 +384,7 @@ def queries(request):
         query = query.replace("_pred_name", pred.lower())
         query = query.replace("_obj_name", obj)
 
-        print(query)
+        #print(query)
 
         payload_query = { "query": query }
         res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
@@ -397,7 +399,8 @@ def queries(request):
         scout_description = '"'+ pred + ' ' + request.POST[pred] + '"'
 
         return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
-
+    
+    # reset all forms
     else:
         request.session['animal_list'] = []
         request.session['animal_description'] = {}
