@@ -430,7 +430,7 @@ def ask(request):
         
         animal_question = request.POST['animal_question']
         
-        query = query.replace("_animal_name", request.POST['animal_name'])
+        query = query.replace("_animal_name", request.POST['animal_name'].lower().title())
         query = query.replace("_pred", animal_question.split("_")[0])
         query = query.replace("_animal_attribute", animal_question.split("_")[1].title())
 
