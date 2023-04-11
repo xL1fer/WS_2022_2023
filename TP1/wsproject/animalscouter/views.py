@@ -396,7 +396,10 @@ def queries(request):
         for e in res['results']['bindings']:
             request.session['animal_list'].append((e['animal_name']['value'].replace(" ", "_"), e['animal_name']['value']))
 
-        scout_description = '"'+ pred + ' ' + request.POST[pred] + '"'
+        if pred == 'Legs':
+            scout_description = '"'+ request.POST[pred] + ' ' + pred + '"'
+        else:
+            scout_description = '"'+ pred + ' ' + request.POST[pred] + '"'
 
         return render(request, 'queries.html', { 'session': request.session, 'scout_description': scout_description, 'animal_class_form': AnimalClassForm(), 'animal_nurturing_form': AnimalNurturingForm(), 'animal_legs_form': AnimalLegsForm() })
     
