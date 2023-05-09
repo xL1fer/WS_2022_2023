@@ -1,0 +1,36 @@
+@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix zooi: <http://zoo.org/animal/id/> .
+@prefix zooc: <http://zoo.org/class/id/> .
+@prefix zoop: <http://zoo.org/pred/> .
+@prefix zoon: <http://zoo.org/nurt/id/> .
+
+@prefix animalc: <http://zoo.org/class/> .
+
+
+
+animalc:Animal rdf:type rdfs:Class .
+animalc:Class rdf:type rdfs:Class .
+animalc:Nurt rdf:type rdfs:Class .
+
+
+zoop:class rdf:type rdfs:Property ;
+		rdfs:domain animalc:Animal;
+		rdfs:range animalc:Class .
+
+zoop:has rdf:type rdfs:Property ;
+		rdfs:domain animalc:Animal;
+		rdfs:range rdfs:Literal .
+
+zoop:is rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range rdfs:Literal .
+
+zoop:legs rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range rdfs:Literal .
+
+zoop:nurt rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range animalc:Nurt .

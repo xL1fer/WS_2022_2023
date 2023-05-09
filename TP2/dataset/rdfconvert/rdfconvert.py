@@ -4,6 +4,8 @@ Description  : A little python script that converts files and whole directory tr
 Author       : Wim Pessemier
 Contact      : w**.p********@ster.kuleuven.be (replace *)
 Organization : Institute of Astronomy, KU Leuven
+
+https://github.com/WimPessemier/rdfconvert
 """
 
 from rdflib import Graph, plugin

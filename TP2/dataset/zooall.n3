@@ -1,0 +1,886 @@
+@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+
+@prefix zooi: <http://zoo.org/animal/id/> .
+@prefix zooc: <http://zoo.org/class/id/> .
+@prefix zoop: <http://zoo.org/pred/> .
+@prefix zoon: <http://zoo.org/nurt/id/> .
+
+@prefix animalc: <http://zoo.org/class/> .
+
+
+
+animalc:Animal rdf:type rdfs:Class .
+animalc:Class rdf:type rdfs:Class .
+animalc:Nurt rdf:type rdfs:Class .
+
+
+zoop:class rdf:type rdfs:Property ;
+		rdfs:domain animalc:Animal;
+		rdfs:range animalc:Class .
+
+zoop:has rdf:type rdfs:Property ;
+		rdfs:domain animalc:Animal;
+		rdfs:range rdfs:Literal .
+
+zoop:is rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range rdfs:Literal .
+
+zoop:legs rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range rdfs:Literal .
+
+zoop:nurt rdf:type rdfs:Property ;
+        rdfs:domain animalc:Animal;
+        rdfs:range animalc:Nurt .
+		
+
+
+
+
+@prefix zooi: <http://zoo.org/animal/id/> .
+@prefix zooc: <http://zoo.org/class/id/> .
+@prefix zoop: <http://zoo.org/pred/> .
+@prefix zoon: <http://zoo.org/nurt/id/> .
+
+zooi:abelha zoop:class zooc:6 ;
+    zoop:has "Hair" ;
+    zoop:is "Airborne",
+        "Venomous" ;
+    zoop:legs "6" ;
+    zoop:name "Abelha" ;
+    zoop:nurt zoon:1 .
+
+zooi:adder zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed",
+        "Venomous" ;
+    zoop:name "Adder" ;
+    zoop:nurt zoon:1 .
+
+zooi:aguia-cinzenta zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Aguia-Cinzenta" ;
+    zoop:nurt zoon:1 .
+
+zooi:alligator zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Alligator" ;
+    zoop:nurt zoon:1 .
+
+zooi:anchovy zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Anchovy" ;
+    zoop:nurt zoon:1 .
+
+zooi:anta zoop:class zooc:1 ;
+    zoop:has "Hair" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Anta" ;
+    zoop:nurt zoon:2 .
+
+zooi:antlion zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Antlion" ;
+    zoop:nurt zoon:1 .
+
+zooi:aphid zoop:class zooc:6 ;
+    zoop:legs "6" ;
+    zoop:name "Aphid" ;
+    zoop:nurt zoon:1 .
+
+zooi:aracari-banana zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Aracari-Banana" ;
+    zoop:nurt zoon:1 .
+
+zooi:arara-azul zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Arara-Azul" ;
+    zoop:nurt zoon:1 .
+
+zooi:arara-caninde zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Arara-Caninde" ;
+    zoop:nurt zoon:1 .
+
+zooi:ariranha zoop:class zooc:1 ;
+    zoop:has "Fins",
+        "Hair",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Ariranha" ;
+    zoop:nurt zoon:2 .
+
+zooi:baiacu zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed",
+        "Venomous" ;
+    zoop:name "Baiacu" ;
+    zoop:nurt zoon:1 .
+
+zooi:barracuda zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Barracuda" ;
+    zoop:nurt zoon:1 .
+
+zooi:beetle zoop:class zooc:6 ;
+    zoop:legs "6" ;
+    zoop:name "Beetle" ;
+    zoop:nurt zoon:1 .
+
+zooi:bicho-pau zoop:class zooc:7 ;
+    zoop:legs "6" ;
+    zoop:name "Bicho-Pau" ;
+    zoop:nurt zoon:1 .
+
+zooi:boa zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:name "Boa" ;
+    zoop:nurt zoon:1 .
+
+zooi:boto-cor-de-rosa zoop:class zooc:1 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Boto-Cor-De-Rosa" ;
+    zoop:nurt zoon:2 .
+
+zooi:bugio zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Bugio" ;
+    zoop:nurt zoon:2 .
+
+zooi:butterfly zoop:class zooc:6 ;
+    zoop:has "Hair" ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Butterfly" ;
+    zoop:nurt zoon:1 .
+
+zooi:cachorro-vinagre zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Cachorro-Vinagre" ;
+    zoop:nurt zoon:2 .
+
+zooi:caracol-da-mata-atlantica zoop:class zooc:7 ;
+    zoop:name "Caracol-Da-Mata-Atlantica" ;
+    zoop:nurt zoon:1 .
+
+zooi:caranguejeira zoop:class zooc:7 ;
+    zoop:has "Hair" ;
+    zoop:is "Venomous" ;
+    zoop:legs "8" ;
+    zoop:name "Caranguejeira" ;
+    zoop:nurt zoon:1 .
+
+zooi:cascudinho-de-caverna zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Domestic",
+        "Toothed" ;
+    zoop:name "Cascudinho-De-Caverna" ;
+    zoop:nurt zoon:1 .
+
+zooi:chameleon zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Chameleon" ;
+    zoop:nurt zoon:1 .
+
+zooi:chaua zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne",
+        "Domestic" ;
+    zoop:legs "2" ;
+    zoop:name "Chaua" ;
+    zoop:nurt zoon:1 .
+
+zooi:chimpanze zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Chimpanze" ;
+    zoop:nurt zoon:2 .
+
+zooi:cicada zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Cicada" ;
+    zoop:nurt zoon:1 .
+
+zooi:cobra-cipo zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:name "Cobra-Cipo" ;
+    zoop:nurt zoon:1 .
+
+zooi:cockroach zoop:class zooc:6 ;
+    zoop:legs "6" ;
+    zoop:name "Cockroach" ;
+    zoop:nurt zoon:1 .
+
+zooi:cricket zoop:class zooc:6 ;
+    zoop:legs "6" ;
+    zoop:name "Cricket" ;
+    zoop:nurt zoon:1 .
+
+zooi:crocodile zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Crocodile" ;
+    zoop:nurt zoon:1 .
+
+zooi:dart_frog zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Dart Frog" ;
+    zoop:nurt zoon:1 .
+
+zooi:dragonfly zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Dragonfly" ;
+    zoop:nurt zoon:1 .
+
+zooi:ema zoop:class zooc:2 ;
+    zoop:has "Feathers" ;
+    zoop:legs "2" ;
+    zoop:name "Ema" ;
+    zoop:nurt zoon:1 .
+
+zooi:firebelly zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Firebelly" ;
+    zoop:nurt zoon:1 .
+
+zooi:flounder zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Flounder" ;
+    zoop:nurt zoon:1 .
+
+zooi:gato-maracaja zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Gato-Maracaja" ;
+    zoop:nurt zoon:2 .
+
+zooi:gaviao-pombo zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Gaviao-Pombo" ;
+    zoop:nurt zoon:1 .
+
+zooi:gecko zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Gecko" ;
+    zoop:nurt zoon:1 .
+
+zooi:gharial zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Gharial" ;
+    zoop:nurt zoon:1 .
+
+zooi:guara zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne",
+        "Aquatic" ;
+    zoop:legs "2" ;
+    zoop:name "Guara" ;
+    zoop:nurt zoon:1 .
+
+zooi:halibut zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Halibut" ;
+    zoop:nurt zoon:1 .
+
+zooi:harpia zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Harpia" ;
+    zoop:nurt zoon:1 .
+
+zooi:hornet zoop:class zooc:6 ;
+    zoop:is "Airborne",
+        "Venomous" ;
+    zoop:legs "6" ;
+    zoop:name "Hornet" ;
+    zoop:nurt zoon:1 .
+
+zooi:iguana zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Iguana" ;
+    zoop:nurt zoon:1 .
+
+zooi:jabuti zoop:class zooc:3 ;
+    zoop:is "Aquatic",
+        "Domestic" ;
+    zoop:legs "4" ;
+    zoop:name "Jabuti" ;
+    zoop:nurt zoon:1 .
+
+zooi:jacare-coroa zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Jacare-Coroa" ;
+    zoop:nurt zoon:1 .
+
+zooi:jacurutu zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Jacurutu" ;
+    zoop:nurt zoon:1 .
+
+zooi:jacutinga zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Jacutinga" ;
+    zoop:nurt zoon:1 .
+
+zooi:jaguatirica zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Jaguatirica" ;
+    zoop:nurt zoon:2 .
+
+zooi:jandaia-amarela zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Jandaia-Amarela" ;
+    zoop:nurt zoon:1 .
+
+zooi:jararaca-ilhoa zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed",
+        "Venomous" ;
+    zoop:name "Jararaca-Ilhoa" ;
+    zoop:nurt zoon:1 .
+
+zooi:jellyfish zoop:class zooc:7 ;
+    zoop:is "Aquatic",
+        "Venomous" ;
+    zoop:name "Jellyfish" ;
+    zoop:nurt zoon:1 .
+
+zooi:jiboia zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:name "Jiboia" ;
+    zoop:nurt zoon:1 .
+
+zooi:joaninha zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Joaninha" ;
+    zoop:nurt zoon:1 .
+
+zooi:lambari zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Domestic",
+        "Toothed" ;
+    zoop:name "Lambari" ;
+    zoop:nurt zoon:1 .
+
+zooi:lizard zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Lizard" ;
+    zoop:nurt zoon:1 .
+
+zooi:lobo-guara zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Lobo-Guara" ;
+    zoop:nurt zoon:2 .
+
+zooi:macaco-aranha zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Macaco-Aranha" ;
+    zoop:nurt zoon:2 .
+
+zooi:macaco-barrigudo zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Macaco-Barrigudo" ;
+    zoop:nurt zoon:2 .
+
+zooi:mackerel zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Mackerel" ;
+    zoop:nurt zoon:1 .
+
+zooi:macuco zoop:class zooc:2 ;
+    zoop:has "Feathers" ;
+    zoop:legs "2" ;
+    zoop:name "Macuco" ;
+    zoop:nurt zoon:1 .
+
+zooi:mantis zoop:class zooc:6 ;
+    zoop:legs "6" ;
+    zoop:name "Mantis" ;
+    zoop:nurt zoon:1 .
+
+zooi:mariposa zoop:class zooc:6 ;
+    zoop:has "Hair" ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Mariposa" ;
+    zoop:nurt zoon:1 .
+
+zooi:marlin zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Marlin" ;
+    zoop:nurt zoon:1 .
+
+zooi:matrinxa zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Matrinxa" ;
+    zoop:nurt zoon:1 .
+
+zooi:mico-leao-dourado zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Mico-Leao-Dourado" ;
+    zoop:nurt zoon:2 .
+
+zooi:mono-carvoeiro zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Mono-Carvoeiro" ;
+    zoop:nurt zoon:2 .
+
+zooi:mosquito zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Mosquito" ;
+    zoop:nurt zoon:1 .
+
+zooi:murucututu zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Murucututu" ;
+    zoop:nurt zoon:1 .
+
+zooi:mutum zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:legs "2" ;
+    zoop:name "Mutum" ;
+    zoop:nurt zoon:1 .
+
+zooi:onca-pintada zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Onca-Pintada" ;
+    zoop:nurt zoon:2 .
+
+zooi:orangotango zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Orangotango" ;
+    zoop:nurt zoon:2 .
+
+zooi:palmetto zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Palmetto" ;
+    zoop:nurt zoon:1 .
+
+zooi:papagaio-de-cara-roxa zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne",
+        "Domestic" ;
+    zoop:legs "2" ;
+    zoop:name "Papagaio-De-Cara-Roxa" ;
+    zoop:nurt zoon:1 .
+
+zooi:pato-de-crista zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne",
+        "Aquatic" ;
+    zoop:legs "2" ;
+    zoop:name "Pato-De-Crista" ;
+    zoop:nurt zoon:1 .
+
+zooi:pavo zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Pavo" ;
+    zoop:nurt zoon:1 .
+
+zooi:peixe-boi zoop:class zooc:1 ;
+    zoop:has "Fins",
+        "Hair",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "2" ;
+    zoop:name "Peixe-Boi" ;
+    zoop:nurt zoon:2 .
+
+zooi:perereca-de-alcatrazes zoop:class zooc:5 ;
+    zoop:is "Aquatic" ;
+    zoop:legs "4" ;
+    zoop:name "Perereca-De-Alcatrazes" ;
+    zoop:nurt zoon:1 .
+
+zooi:pirarucu zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Pirarucu" ;
+    zoop:nurt zoon:1 .
+
+zooi:pirilampo zoop:class zooc:6 ;
+    zoop:is "Airborne" ;
+    zoop:legs "6" ;
+    zoop:name "Pirilampo" ;
+    zoop:nurt zoon:1 .
+
+zooi:python zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed",
+        "Venomous" ;
+    zoop:name "Python" ;
+    zoop:nurt zoon:1 .
+
+zooi:queixada zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Queixada" ;
+    zoop:nurt zoon:2 .
+
+zooi:ra-flecha-azul zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Venomous" ;
+    zoop:legs "4" ;
+    zoop:name "Ra-Flecha-Azul" ;
+    zoop:nurt zoon:1 .
+
+zooi:ra-pimenta zoop:class zooc:5 ;
+    zoop:is "Aquatic" ;
+    zoop:legs "4" ;
+    zoop:name "Ra-Pimenta" ;
+    zoop:nurt zoon:1 .
+
+zooi:raia-chita zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed",
+        "Venomous" ;
+    zoop:name "Raia-Chita" ;
+    zoop:nurt zoon:1 .
+
+zooi:salamander zoop:class zooc:5 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Domestic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Salamander" ;
+    zoop:nurt zoon:1 .
+
+zooi:sapo-barriga-de-fogo zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Domestic" ;
+    zoop:legs "4" ;
+    zoop:name "Sapo-Barriga-De-Fogo" ;
+    zoop:nurt zoon:1 .
+
+zooi:sapo-cururu zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed",
+        "Venomous" ;
+    zoop:legs "4" ;
+    zoop:name "Sapo-Cururu" ;
+    zoop:nurt zoon:1 .
+
+zooi:sapo-de-chifre zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Sapo-De-Chifre" ;
+    zoop:nurt zoon:1 .
+
+zooi:sauva-limao zoop:class zooc:7 ;
+    zoop:has "Hair" ;
+    zoop:is "Venomous" ;
+    zoop:legs "6" ;
+    zoop:name "Sauva-Limao" ;
+    zoop:nurt zoon:1 .
+
+zooi:scallop zoop:class zooc:7 ;
+    zoop:is "Aquatic" ;
+    zoop:name "Scallop" ;
+    zoop:nurt zoon:1 .
+
+zooi:silkworm zoop:class zooc:7 ;
+    zoop:name "Silkworm" ;
+    zoop:nurt zoon:1 .
+
+zooi:siren zoop:class zooc:5 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "2" ;
+    zoop:name "Siren" ;
+    zoop:nurt zoon:1 .
+
+zooi:skink zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Skink" ;
+    zoop:nurt zoon:1 .
+
+zooi:snail zoop:class zooc:7 ;
+    zoop:name "Snail" ;
+    zoop:nurt zoon:1 .
+
+zooi:spider zoop:class zooc:7 ;
+    zoop:is "Toothed",
+        "Venomous" ;
+    zoop:legs "8" ;
+    zoop:name "Spider" ;
+    zoop:nurt zoon:1 .
+
+zooi:squid zoop:class zooc:7 ;
+    zoop:is "Aquatic" ;
+    zoop:name "Squid" ;
+    zoop:nurt zoon:1 .
+
+zooi:sucuri zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Sucuri" ;
+    zoop:nurt zoon:1 .
+
+zooi:tamandua-bandeira zoop:class zooc:1 ;
+    zoop:has "Hair",
+        "Tail" ;
+    zoop:legs "4" ;
+    zoop:name "Tamandua-Bandeira" ;
+    zoop:nurt zoon:2 .
+
+zooi:tambaqui zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Tambaqui" ;
+    zoop:nurt zoon:1 .
+
+zooi:tracaja zoop:class zooc:3 ;
+    zoop:is "Aquatic",
+        "Domestic" ;
+    zoop:legs "4" ;
+    zoop:name "Tracaja" ;
+    zoop:nurt zoon:1 .
+
+zooi:tree_frog zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Tree Frog" ;
+    zoop:nurt zoon:1 .
+
+zooi:trout zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic" ;
+    zoop:name "Trout" ;
+    zoop:nurt zoon:1 .
+
+zooi:tubarao-raposa zoop:class zooc:4 ;
+    zoop:has "Fins",
+        "Tail" ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:name "Tubarao-Raposa" ;
+    zoop:nurt zoon:1 .
+
+zooi:tucano-de-bico-preto zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Tucano-De-Bico-Preto" ;
+    zoop:nurt zoon:1 .
+
+zooi:turtle zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Aquatic",
+        "Domestic" ;
+    zoop:legs "4" ;
+    zoop:name "Turtle" ;
+    zoop:nurt zoon:1 .
+
+zooi:urso-de-oculos zoop:class zooc:1 ;
+    zoop:has "Hair" ;
+    zoop:is "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Urso-De-Oculos" ;
+    zoop:nurt zoon:2 .
+
+zooi:urubu-rei zoop:class zooc:2 ;
+    zoop:has "Feathers",
+        "Tail" ;
+    zoop:is "Airborne" ;
+    zoop:legs "2" ;
+    zoop:name "Urubu-Rei" ;
+    zoop:nurt zoon:1 .
+
+zooi:urutu-cruzeiro zoop:class zooc:3 ;
+    zoop:has "Tail" ;
+    zoop:is "Toothed",
+        "Venomous" ;
+    zoop:name "Urutu-Cruzeiro" ;
+    zoop:nurt zoon:1 .
+
+zooi:vespa zoop:class zooc:6 ;
+    zoop:is "Airborne",
+        "Venomous" ;
+    zoop:legs "6" ;
+    zoop:name "Vespa" ;
+    zoop:nurt zoon:1 .
+
+zooi:wart_toad zoop:class zooc:5 ;
+    zoop:is "Aquatic",
+        "Toothed" ;
+    zoop:legs "4" ;
+    zoop:name "Wart Toad" ;
+    zoop:nurt zoon:1 .
+
+zooc:7 zoop:name "Invertebrate" .
+
+zooc:5 zoop:name "Amphibian" .
+
+zooc:4 zoop:name "Fish" .
+
+zooc:6 zoop:name "Insect" .
+
+zooc:1 zoop:name "Mammal" .
+
+zoon:2 zoop:name "Milk" .
+
+zooc:2 zoop:name "Bird" .
+
+zooc:3 zoop:name "Reptile" .
+
+zoon:1 zoop:name "Eggs" .
+
+
