@@ -1,0 +1,191 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+*/
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+
+/************************************************/
+/*            Queries Page Styling              */
+/************************************************/
+
+/* Local method of including fonts */
+@font-face {
+    src: url('../fonts/Open_Sans/OpenSans-Regular.ttf');
+	font-family: OpenSans;
+}
+
+* {
+    font-family: OpenSans;
+    /*font-family: 'Open Sans', sans-serif;*/ /* uncomment this line and comment the previous one to use online include */
+    color: rgb(90, 90, 90);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1;
+}
+
+.m-title {
+    font-size: 4.688rem;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.s-title {
+    font-size: 2.344rem;
+    text-align: center;
+}
+
+.center {
+    margin: auto;
+    width: 70%;
+    /*border: 1px solid green;*/
+    padding: 10px;
+}
+
+select {
+    padding: 2% 0;
+    width: 100%;
+    border-radius: 7px;
+    text-align: center;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
+.a-item {
+    margin: 0.6% 0;
+}
+
+.a-item:hover {
+    cursor: pointer;
+    color:black;
+}
+
+.column {
+    float: left;
+    text-align: center;
+    width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column .a-item {
+    /*font-size: 1.5rem;*/
+}
+
+a svg#v-logo-footer
+{
+	fill: grey;
+	height: 3.0em;
+	transition: fill 200ms;
+}
+
+a:hover svg#v-logo-footer
+{
+	fill: #4b423c;
+}
+
+/************************************************/
+/*               Ask Page Styling               */
+/************************************************/
+
+.ask-form select {
+    padding: 2% 0;
+    width: 46%;
+    border-radius: 7px;
+    text-align: center;
+    border: 1px solid gray;
+    display: inline;
+}
+
+.ask-form input {
+    padding: 2% 0;
+    width: 46%;
+    text-align: center;
+    border: 1px solid gray;
+    display: inline;
+}
+
+.ask-response {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    font-size: 3rem;
+    background-color: rgb(214, 83, 83);
+    color: white;
+}
+
+/************************************************/
+/*             Config Page Styling              */
+/************************************************/
+
+button {
+    background-color: lightgrey;
+    border-radius: 7px;
+    border: 1px solid gray;
+    width: 40%;
+    transition: ease 200ms;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(180, 180, 180);
+}
+
+.column-3 {
+    float: left;
+    width: 31%;
+}
+
+input {
+    padding: 1% 0;
+    border: 1px solid gray;
+    text-align: center;
+}

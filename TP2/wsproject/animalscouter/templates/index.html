@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Animal Scouter</h1>
+    <p class="lead">Developed in the context of the first project of Semantic Web (WS)<br>
+        Engineering Masters 2023
+    </p>
+    <p><a href="https://www.ua.pt/pt/deti" target="_blank" class="btn btn-primary btn-large">University of Aveiro</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Configs</h2>
+        <p>
+            Provides users with the ability to manage and update the database. Allows users to add or remove data to and from the 
+            database. Users can enter new information into the database, such as new animals or new categories and also 
+            delete data deemed outdated or inaccurate.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'configs' %}">Any new species?</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Queries</h2>
+        <p>
+            Presents drop-down menus, users can select a particular group of animals they are interested in, such as animal class, type of nurturing
+            or number of legs. Users can then click on the name of an individual animal to access all the information stored about that animal.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'queries' %}">Try it out!</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Ask</h2>
+        <p>
+            A simple and intuitive way to inquire about the presence of specific features or attributes in different animals within 
+            the database. By selecting an attribute such as "venomous" and typing in the name of the animal, users can 
+            submit a query and receive information about whether or not it is true.
+        </p>
+        <p><a class="btn btn-default" href="{% url 'ask' %}">Try it here!</a></p>
+    </div>
+</div>
+
+{% endblock %}

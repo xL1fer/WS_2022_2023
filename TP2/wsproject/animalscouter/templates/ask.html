@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="m-title">[ Ask ]</h1>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div class="ask-form">
+        {{animal_ask_form.animal_name}}
+        {{animal_ask_form.animal_question}}
+        ?
+    </div>
+</form>
+
+{% if ask_response %}
+    <div class="ask-response" style="background-color: rgb(39, 179, 39);">True</div>
+{% elif ask_response != None %}
+    <div class="ask-response" style="background-color: rgb(207, 76, 76);">False</div>
+{% endif %}
+
+{% endblock %}

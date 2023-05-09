@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="m-title">[ Queries ]</h1>
+
+<form id="reset_form" method="post" enctype="multipart/form-data" class="center" style="text-align: center; text-decoration: underline; ">
+    {% csrf_token %}
+    <div class="a-item">
+        <a onclick="document.getElementById('reset_form').submit();">Reset</a>
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_class_form.animal_class}}
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_nurturing_form.animal_nurturing}}
+    </div>
+</form>
+
+<form method="post" enctype="multipart/form-data" class="center">
+    {% csrf_token %}
+    <div>
+        {{animal_legs_form.animal_legs}}
+    </div>
+</form>
+
+<div class="row">
+    <!-- retrieved animals list -->
+    <div class="column">
+        {% if session.animal_list %}
+            <p style="margin-top: 3%;"><span style="font-weight: bold;">{{scout_description}}</span> Scouted Animals</p>
+        {% endif %}
+
+        {% for a in session.animal_list%}
+        <form id="animal_{{a.0}}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="a-item">
+                <input type="hidden" name="animal_item" value={{a.0}} />
+                <a onclick="document.getElementById('animal_{{a.0}}').submit();">{{a.1}}</a>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+    <!-- selected animal description -->
+    <div class="column">
+        {% if session.animal_description %}
+            <p style="margin-top: 3%; margin-bottom: 3%;">Animal Description</p>
+        {% endif %}
+
+        {% for d in session.animal_description %}
+        <div>
+            <form id="{{d.0}}_{{d.1}}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="a-item">
+                    <input type="hidden" name="{{d.0}}" value={{d.1}} />
+                    <a onclick="document.getElementById('{{d.0}}_{{d.1}}').submit();">{{d.0}} <span style="font-weight: bold;">{{d.1}}</span></a>
+                </div>
+            </form>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
