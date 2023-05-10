@@ -11,13 +11,6 @@ WHERE {
 }
 
 
-PREFIX animalc: <http://zoo.org/class/>
-select ?s
-WHERE {
-	?s a animalc:Bird.
-}
-
-
 -- Land animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
@@ -29,13 +22,6 @@ WHERE {
     ?s a animalc:Animal.
 	filter NOT EXISTS { ?s zoop:is "Airborne". }.
 	filter NOT EXISTS { ?s zoop:is "Aquatic". }.
-}
-
-
-PREFIX animalc: <http://zoo.org/class/>
-SELECT ?s
-WHERE {
-	?s a animalc:Land.
 }
 
 
@@ -55,13 +41,6 @@ WHERE {
 }
 
 
-PREFIX animalc: <http://zoo.org/class/>
-SELECT ?s
-WHERE {
-	?s a animalc:Mammal.
-}
-
-
 -- Fish animals
 PREFIX animalc: <http://zoo.org/class/>
 PREFIX zoop: <http://zoo.org/pred/>
@@ -74,6 +53,47 @@ WHERE {
     ?s zoop:nurt zoon:1.
 }
 
+
+-- Arthropod animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT {
+   ?s a animalc:Arthropod.
+}
+WHERE {
+    {
+        ?s zoop:class ?classid.
+        ?classid zoop:name "Insect".
+	}
+    UNION
+    {
+        ?s zoop:class ?classid.
+        ?classid zoop:name "Invertebrate".
+    }
+}
+
+
+-- Reptilia animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+CONSTRUCT {
+   ?s a animalc:Reptilia.
+}
+WHERE {
+    {
+        ?s zoop:class ?classid.
+        ?classid zoop:name "Amphibian".
+	}
+    UNION
+    {
+        ?s zoop:class ?classid.
+        ?classid zoop:name "Reptile".
+    }
+}
 
 
 
@@ -92,25 +112,4 @@ CONSTRUCT {
 WHERE {
 	?s zoop:legs "6".
 	?s zoop:nurt nurt:1.
-}
-
-
--- Arachnid animals
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX animalc: <http://zoo.org/class/>
-PREFIX zoop: <http://zoo.org/pred/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-CONSTRUCT {
-   ?s a animalc:Arachnid.
-}
-WHERE {
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Insect".
-	}
-    UNION
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Invertebrate".
-    }
 }

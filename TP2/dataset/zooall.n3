@@ -71,6 +71,21 @@ rdfs:Property rdf:type owl:Class .
 animalc:Animal rdf:type owl:Class .
 
 
+###  http://zoo.org/class/Arthropod
+animalc:Arthropod rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Class ;
+                                        owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty zoop:class ;
+                                                        owl:hasValue <http://zoo.org/class/id/6>
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty zoop:class ;
+                                                        owl:hasValue <http://zoo.org/class/id/7>
+                                                      ]
+                                                    )
+                                      ] .
+
+
 ###  http://zoo.org/class/Bird
 animalc:Bird rdf:type owl:Class ;
              owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -134,6 +149,21 @@ animalc:Mammal rdf:type owl:Class ;
 
 ###  http://zoo.org/class/Nurt
 animalc:Nurt rdf:type owl:Class .
+
+
+###  http://zoo.org/class/Reptilia
+animalc:Reptilia rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Class ;
+                                       owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                       owl:onProperty zoop:class ;
+                                                       owl:hasValue <http://zoo.org/class/id/3>
+                                                     ]
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty zoop:class ;
+                                                       owl:hasValue <http://zoo.org/class/id/5>
+                                                     ]
+                                                   )
+                                     ] .
 
 
 #################################################################
