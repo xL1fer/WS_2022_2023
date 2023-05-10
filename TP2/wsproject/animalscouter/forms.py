@@ -74,11 +74,13 @@ class InsertAnimalForm(forms.Form):
     animal_venomous = forms.BooleanField(required=False)
     animal_aquatic = forms.BooleanField(required=False)
     animal_airborne = forms.BooleanField(required=False)
+    animal_predator = forms.BooleanField(required=False)
 
     animal_tail = forms.BooleanField(required=False)
     animal_fins = forms.BooleanField(required=False)
     animal_feathers = forms.BooleanField(required=False)
     animal_hair = forms.BooleanField(required=False)
+    animal_backbone = forms.BooleanField(required=False)
 
     animal_milk = forms.BooleanField(required=False)
     animal_eggs = forms.BooleanField(required=False)
@@ -128,11 +130,13 @@ question_list = [
     ('has_fins', 'Has fins'),
     ('has_feathers', 'Has feathers'),
     ('has_hair', 'Has hair'),
+    ('has_backbone', 'Has backbone'),
     ('is_domestic', 'Is domestic'),
     ('is_venomous', 'Is venomous'),
     ('is_toothed', 'Is toothed'),
     ('is_airborne', 'Is airborne'),
     ('is_aquatic', 'Is aquatic'),
+    ('is_predator', 'Is predator'),
     ]
 
 class AnimalAskForm(forms.Form):

@@ -65,6 +65,8 @@ def configs(request):
             update += """id:_name_id pred:is "Aquatic".\n"""
         if 'animal_airborne' in request.POST:
             update += """id:_name_id pred:is "Airborne".\n"""
+        if 'animal_predator' in request.POST:
+            update += """id:_name_id pred:is "Predator".\n"""
         if 'animal_milk' in request.POST:
             update += """id:_name_id pred:nurt nurt:2.\n"""
         if 'animal_eggs' in request.POST:
@@ -77,6 +79,8 @@ def configs(request):
             update += """id:_name_id pred:has "Feathers".\n"""
         if 'animal_hair' in request.POST:
             update += """id:_name_id pred:has "Hair".\n"""
+        if 'animal_backbone' in request.POST:
+            update += """id:_name_id pred:has "Backbone".\n"""
         if 'animal_legs' in request.POST and request.POST['animal_legs'] != '0':
             update += """id:_name_id pred:legs "%s".\n""" % request.POST['animal_legs']
 
@@ -297,6 +301,8 @@ def queries(request):
             key = e['p']['value'].split("/")[-1]
 
             #print(key)
+            if key.find('#') != -1:
+                continue
 
             if key == "class":
                 class_query = """
