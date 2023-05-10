@@ -1,886 +1,1503 @@
-@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
-
-@prefix zooi: <http://zoo.org/animal/id/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix zooc: <http://zoo.org/class/id/> .
-@prefix zoop: <http://zoo.org/pred/> .
+@prefix zooi: <http://zoo.org/animal/id/> .
 @prefix zoon: <http://zoo.org/nurt/id/> .
-
+@prefix zoop: <http://zoo.org/pred/> .
 @prefix animalc: <http://zoo.org/class/> .
+@base <http://www.w3.org/2002/07/owl#> .
+
+[ rdf:type owl:Ontology
+ ] .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://zoo.org/pred/name
+zoop:name rdf:type owl:AnnotationProperty .
 
 
+#################################################################
+#    Object Properties
+#################################################################
 
-animalc:Animal rdf:type rdfs:Class .
-animalc:Class rdf:type rdfs:Class .
-animalc:Nurt rdf:type rdfs:Class .
+###  http://zoo.org/pred/class
+zoop:class rdf:type owl:ObjectProperty ;
+           rdfs:domain animalc:Animal ;
+           rdfs:range animalc:Class .
 
 
-zoop:class rdf:type rdfs:Property ;
-		rdfs:domain animalc:Animal;
-		rdfs:range animalc:Class .
+###  http://zoo.org/pred/nurt
+zoop:nurt rdf:type owl:ObjectProperty ;
+          rdfs:domain animalc:Animal ;
+          rdfs:range animalc:Nurt .
 
-zoop:has rdf:type rdfs:Property ;
-		rdfs:domain animalc:Animal;
-		rdfs:range rdfs:Literal .
 
-zoop:is rdf:type rdfs:Property ;
-        rdfs:domain animalc:Animal;
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://zoo.org/pred/has
+zoop:has rdf:type owl:DatatypeProperty ;
+         rdfs:domain animalc:Animal ;
+         rdfs:range rdfs:Literal .
+
+
+###  http://zoo.org/pred/is
+zoop:is rdf:type owl:DatatypeProperty ;
+        rdfs:domain animalc:Animal ;
         rdfs:range rdfs:Literal .
 
-zoop:legs rdf:type rdfs:Property ;
-        rdfs:domain animalc:Animal;
-        rdfs:range rdfs:Literal .
-
-zoop:nurt rdf:type rdfs:Property ;
-        rdfs:domain animalc:Animal;
-        rdfs:range animalc:Nurt .
-		
-
-
-
-
-@prefix zooi: <http://zoo.org/animal/id/> .
-@prefix zooc: <http://zoo.org/class/id/> .
-@prefix zoop: <http://zoo.org/pred/> .
-@prefix zoon: <http://zoo.org/nurt/id/> .
-
-zooi:abelha zoop:class zooc:6 ;
-    zoop:has "Hair" ;
-    zoop:is "Airborne",
-        "Venomous" ;
-    zoop:legs "6" ;
-    zoop:name "Abelha" ;
-    zoop:nurt zoon:1 .
-
-zooi:adder zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed",
-        "Venomous" ;
-    zoop:name "Adder" ;
-    zoop:nurt zoon:1 .
-
-zooi:aguia-cinzenta zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Aguia-Cinzenta" ;
-    zoop:nurt zoon:1 .
-
-zooi:alligator zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Alligator" ;
-    zoop:nurt zoon:1 .
-
-zooi:anchovy zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Anchovy" ;
-    zoop:nurt zoon:1 .
-
-zooi:anta zoop:class zooc:1 ;
-    zoop:has "Hair" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Anta" ;
-    zoop:nurt zoon:2 .
-
-zooi:antlion zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Antlion" ;
-    zoop:nurt zoon:1 .
-
-zooi:aphid zoop:class zooc:6 ;
-    zoop:legs "6" ;
-    zoop:name "Aphid" ;
-    zoop:nurt zoon:1 .
-
-zooi:aracari-banana zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Aracari-Banana" ;
-    zoop:nurt zoon:1 .
-
-zooi:arara-azul zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Arara-Azul" ;
-    zoop:nurt zoon:1 .
-
-zooi:arara-caninde zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Arara-Caninde" ;
-    zoop:nurt zoon:1 .
-
-zooi:ariranha zoop:class zooc:1 ;
-    zoop:has "Fins",
-        "Hair",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Ariranha" ;
-    zoop:nurt zoon:2 .
-
-zooi:baiacu zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed",
-        "Venomous" ;
-    zoop:name "Baiacu" ;
-    zoop:nurt zoon:1 .
-
-zooi:barracuda zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Barracuda" ;
-    zoop:nurt zoon:1 .
-
-zooi:beetle zoop:class zooc:6 ;
-    zoop:legs "6" ;
-    zoop:name "Beetle" ;
-    zoop:nurt zoon:1 .
-
-zooi:bicho-pau zoop:class zooc:7 ;
-    zoop:legs "6" ;
-    zoop:name "Bicho-Pau" ;
-    zoop:nurt zoon:1 .
-
-zooi:boa zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:name "Boa" ;
-    zoop:nurt zoon:1 .
-
-zooi:boto-cor-de-rosa zoop:class zooc:1 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Boto-Cor-De-Rosa" ;
-    zoop:nurt zoon:2 .
-
-zooi:bugio zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Bugio" ;
-    zoop:nurt zoon:2 .
-
-zooi:butterfly zoop:class zooc:6 ;
-    zoop:has "Hair" ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Butterfly" ;
-    zoop:nurt zoon:1 .
-
-zooi:cachorro-vinagre zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Cachorro-Vinagre" ;
-    zoop:nurt zoon:2 .
-
-zooi:caracol-da-mata-atlantica zoop:class zooc:7 ;
-    zoop:name "Caracol-Da-Mata-Atlantica" ;
-    zoop:nurt zoon:1 .
-
-zooi:caranguejeira zoop:class zooc:7 ;
-    zoop:has "Hair" ;
-    zoop:is "Venomous" ;
-    zoop:legs "8" ;
-    zoop:name "Caranguejeira" ;
-    zoop:nurt zoon:1 .
-
-zooi:cascudinho-de-caverna zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Domestic",
-        "Toothed" ;
-    zoop:name "Cascudinho-De-Caverna" ;
-    zoop:nurt zoon:1 .
-
-zooi:chameleon zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Chameleon" ;
-    zoop:nurt zoon:1 .
-
-zooi:chaua zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne",
-        "Domestic" ;
-    zoop:legs "2" ;
-    zoop:name "Chaua" ;
-    zoop:nurt zoon:1 .
-
-zooi:chimpanze zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Chimpanze" ;
-    zoop:nurt zoon:2 .
-
-zooi:cicada zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Cicada" ;
-    zoop:nurt zoon:1 .
-
-zooi:cobra-cipo zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:name "Cobra-Cipo" ;
-    zoop:nurt zoon:1 .
-
-zooi:cockroach zoop:class zooc:6 ;
-    zoop:legs "6" ;
-    zoop:name "Cockroach" ;
-    zoop:nurt zoon:1 .
-
-zooi:cricket zoop:class zooc:6 ;
-    zoop:legs "6" ;
-    zoop:name "Cricket" ;
-    zoop:nurt zoon:1 .
-
-zooi:crocodile zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Crocodile" ;
-    zoop:nurt zoon:1 .
-
-zooi:dart_frog zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Dart Frog" ;
-    zoop:nurt zoon:1 .
-
-zooi:dragonfly zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Dragonfly" ;
-    zoop:nurt zoon:1 .
-
-zooi:ema zoop:class zooc:2 ;
-    zoop:has "Feathers" ;
-    zoop:legs "2" ;
-    zoop:name "Ema" ;
-    zoop:nurt zoon:1 .
-
-zooi:firebelly zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Firebelly" ;
-    zoop:nurt zoon:1 .
-
-zooi:flounder zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Flounder" ;
-    zoop:nurt zoon:1 .
-
-zooi:gato-maracaja zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Gato-Maracaja" ;
-    zoop:nurt zoon:2 .
-
-zooi:gaviao-pombo zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Gaviao-Pombo" ;
-    zoop:nurt zoon:1 .
-
-zooi:gecko zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Gecko" ;
-    zoop:nurt zoon:1 .
-
-zooi:gharial zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Gharial" ;
-    zoop:nurt zoon:1 .
-
-zooi:guara zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne",
-        "Aquatic" ;
-    zoop:legs "2" ;
-    zoop:name "Guara" ;
-    zoop:nurt zoon:1 .
-
-zooi:halibut zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Halibut" ;
-    zoop:nurt zoon:1 .
-
-zooi:harpia zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Harpia" ;
-    zoop:nurt zoon:1 .
-
-zooi:hornet zoop:class zooc:6 ;
-    zoop:is "Airborne",
-        "Venomous" ;
-    zoop:legs "6" ;
-    zoop:name "Hornet" ;
-    zoop:nurt zoon:1 .
-
-zooi:iguana zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Iguana" ;
-    zoop:nurt zoon:1 .
-
-zooi:jabuti zoop:class zooc:3 ;
-    zoop:is "Aquatic",
-        "Domestic" ;
-    zoop:legs "4" ;
-    zoop:name "Jabuti" ;
-    zoop:nurt zoon:1 .
-
-zooi:jacare-coroa zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Jacare-Coroa" ;
-    zoop:nurt zoon:1 .
-
-zooi:jacurutu zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Jacurutu" ;
-    zoop:nurt zoon:1 .
-
-zooi:jacutinga zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Jacutinga" ;
-    zoop:nurt zoon:1 .
-
-zooi:jaguatirica zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Jaguatirica" ;
-    zoop:nurt zoon:2 .
-
-zooi:jandaia-amarela zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Jandaia-Amarela" ;
-    zoop:nurt zoon:1 .
-
-zooi:jararaca-ilhoa zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed",
-        "Venomous" ;
-    zoop:name "Jararaca-Ilhoa" ;
-    zoop:nurt zoon:1 .
-
-zooi:jellyfish zoop:class zooc:7 ;
-    zoop:is "Aquatic",
-        "Venomous" ;
-    zoop:name "Jellyfish" ;
-    zoop:nurt zoon:1 .
-
-zooi:jiboia zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:name "Jiboia" ;
-    zoop:nurt zoon:1 .
-
-zooi:joaninha zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Joaninha" ;
-    zoop:nurt zoon:1 .
-
-zooi:lambari zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Domestic",
-        "Toothed" ;
-    zoop:name "Lambari" ;
-    zoop:nurt zoon:1 .
-
-zooi:lizard zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Lizard" ;
-    zoop:nurt zoon:1 .
-
-zooi:lobo-guara zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Lobo-Guara" ;
-    zoop:nurt zoon:2 .
-
-zooi:macaco-aranha zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Macaco-Aranha" ;
-    zoop:nurt zoon:2 .
-
-zooi:macaco-barrigudo zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Macaco-Barrigudo" ;
-    zoop:nurt zoon:2 .
-
-zooi:mackerel zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Mackerel" ;
-    zoop:nurt zoon:1 .
-
-zooi:macuco zoop:class zooc:2 ;
-    zoop:has "Feathers" ;
-    zoop:legs "2" ;
-    zoop:name "Macuco" ;
-    zoop:nurt zoon:1 .
-
-zooi:mantis zoop:class zooc:6 ;
-    zoop:legs "6" ;
-    zoop:name "Mantis" ;
-    zoop:nurt zoon:1 .
-
-zooi:mariposa zoop:class zooc:6 ;
-    zoop:has "Hair" ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Mariposa" ;
-    zoop:nurt zoon:1 .
-
-zooi:marlin zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Marlin" ;
-    zoop:nurt zoon:1 .
-
-zooi:matrinxa zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Matrinxa" ;
-    zoop:nurt zoon:1 .
-
-zooi:mico-leao-dourado zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Mico-Leao-Dourado" ;
-    zoop:nurt zoon:2 .
-
-zooi:mono-carvoeiro zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Mono-Carvoeiro" ;
-    zoop:nurt zoon:2 .
-
-zooi:mosquito zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Mosquito" ;
-    zoop:nurt zoon:1 .
-
-zooi:murucututu zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Murucututu" ;
-    zoop:nurt zoon:1 .
-
-zooi:mutum zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:legs "2" ;
-    zoop:name "Mutum" ;
-    zoop:nurt zoon:1 .
-
-zooi:onca-pintada zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Onca-Pintada" ;
-    zoop:nurt zoon:2 .
-
-zooi:orangotango zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Orangotango" ;
-    zoop:nurt zoon:2 .
-
-zooi:palmetto zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Palmetto" ;
-    zoop:nurt zoon:1 .
-
-zooi:papagaio-de-cara-roxa zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne",
-        "Domestic" ;
-    zoop:legs "2" ;
-    zoop:name "Papagaio-De-Cara-Roxa" ;
-    zoop:nurt zoon:1 .
-
-zooi:pato-de-crista zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne",
-        "Aquatic" ;
-    zoop:legs "2" ;
-    zoop:name "Pato-De-Crista" ;
-    zoop:nurt zoon:1 .
-
-zooi:pavo zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Pavo" ;
-    zoop:nurt zoon:1 .
-
-zooi:peixe-boi zoop:class zooc:1 ;
-    zoop:has "Fins",
-        "Hair",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "2" ;
-    zoop:name "Peixe-Boi" ;
-    zoop:nurt zoon:2 .
-
-zooi:perereca-de-alcatrazes zoop:class zooc:5 ;
-    zoop:is "Aquatic" ;
-    zoop:legs "4" ;
-    zoop:name "Perereca-De-Alcatrazes" ;
-    zoop:nurt zoon:1 .
-
-zooi:pirarucu zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Pirarucu" ;
-    zoop:nurt zoon:1 .
-
-zooi:pirilampo zoop:class zooc:6 ;
-    zoop:is "Airborne" ;
-    zoop:legs "6" ;
-    zoop:name "Pirilampo" ;
-    zoop:nurt zoon:1 .
-
-zooi:python zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed",
-        "Venomous" ;
-    zoop:name "Python" ;
-    zoop:nurt zoon:1 .
-
-zooi:queixada zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Queixada" ;
-    zoop:nurt zoon:2 .
-
-zooi:ra-flecha-azul zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Venomous" ;
-    zoop:legs "4" ;
-    zoop:name "Ra-Flecha-Azul" ;
-    zoop:nurt zoon:1 .
-
-zooi:ra-pimenta zoop:class zooc:5 ;
-    zoop:is "Aquatic" ;
-    zoop:legs "4" ;
-    zoop:name "Ra-Pimenta" ;
-    zoop:nurt zoon:1 .
-
-zooi:raia-chita zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed",
-        "Venomous" ;
-    zoop:name "Raia-Chita" ;
-    zoop:nurt zoon:1 .
-
-zooi:salamander zoop:class zooc:5 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Domestic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Salamander" ;
-    zoop:nurt zoon:1 .
-
-zooi:sapo-barriga-de-fogo zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Domestic" ;
-    zoop:legs "4" ;
-    zoop:name "Sapo-Barriga-De-Fogo" ;
-    zoop:nurt zoon:1 .
-
-zooi:sapo-cururu zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed",
-        "Venomous" ;
-    zoop:legs "4" ;
-    zoop:name "Sapo-Cururu" ;
-    zoop:nurt zoon:1 .
-
-zooi:sapo-de-chifre zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Sapo-De-Chifre" ;
-    zoop:nurt zoon:1 .
-
-zooi:sauva-limao zoop:class zooc:7 ;
-    zoop:has "Hair" ;
-    zoop:is "Venomous" ;
-    zoop:legs "6" ;
-    zoop:name "Sauva-Limao" ;
-    zoop:nurt zoon:1 .
-
-zooi:scallop zoop:class zooc:7 ;
-    zoop:is "Aquatic" ;
-    zoop:name "Scallop" ;
-    zoop:nurt zoon:1 .
-
-zooi:silkworm zoop:class zooc:7 ;
-    zoop:name "Silkworm" ;
-    zoop:nurt zoon:1 .
-
-zooi:siren zoop:class zooc:5 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "2" ;
-    zoop:name "Siren" ;
-    zoop:nurt zoon:1 .
-
-zooi:skink zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Skink" ;
-    zoop:nurt zoon:1 .
-
-zooi:snail zoop:class zooc:7 ;
-    zoop:name "Snail" ;
-    zoop:nurt zoon:1 .
-
-zooi:spider zoop:class zooc:7 ;
-    zoop:is "Toothed",
-        "Venomous" ;
-    zoop:legs "8" ;
-    zoop:name "Spider" ;
-    zoop:nurt zoon:1 .
-
-zooi:squid zoop:class zooc:7 ;
-    zoop:is "Aquatic" ;
-    zoop:name "Squid" ;
-    zoop:nurt zoon:1 .
-
-zooi:sucuri zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Sucuri" ;
-    zoop:nurt zoon:1 .
-
-zooi:tamandua-bandeira zoop:class zooc:1 ;
-    zoop:has "Hair",
-        "Tail" ;
-    zoop:legs "4" ;
-    zoop:name "Tamandua-Bandeira" ;
-    zoop:nurt zoon:2 .
-
-zooi:tambaqui zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Tambaqui" ;
-    zoop:nurt zoon:1 .
-
-zooi:tracaja zoop:class zooc:3 ;
-    zoop:is "Aquatic",
-        "Domestic" ;
-    zoop:legs "4" ;
-    zoop:name "Tracaja" ;
-    zoop:nurt zoon:1 .
-
-zooi:tree_frog zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Tree Frog" ;
-    zoop:nurt zoon:1 .
-
-zooi:trout zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic" ;
-    zoop:name "Trout" ;
-    zoop:nurt zoon:1 .
-
-zooi:tubarao-raposa zoop:class zooc:4 ;
-    zoop:has "Fins",
-        "Tail" ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:name "Tubarao-Raposa" ;
-    zoop:nurt zoon:1 .
-
-zooi:tucano-de-bico-preto zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Tucano-De-Bico-Preto" ;
-    zoop:nurt zoon:1 .
-
-zooi:turtle zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Aquatic",
-        "Domestic" ;
-    zoop:legs "4" ;
-    zoop:name "Turtle" ;
-    zoop:nurt zoon:1 .
-
-zooi:urso-de-oculos zoop:class zooc:1 ;
-    zoop:has "Hair" ;
-    zoop:is "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Urso-De-Oculos" ;
-    zoop:nurt zoon:2 .
-
-zooi:urubu-rei zoop:class zooc:2 ;
-    zoop:has "Feathers",
-        "Tail" ;
-    zoop:is "Airborne" ;
-    zoop:legs "2" ;
-    zoop:name "Urubu-Rei" ;
-    zoop:nurt zoon:1 .
-
-zooi:urutu-cruzeiro zoop:class zooc:3 ;
-    zoop:has "Tail" ;
-    zoop:is "Toothed",
-        "Venomous" ;
-    zoop:name "Urutu-Cruzeiro" ;
-    zoop:nurt zoon:1 .
-
-zooi:vespa zoop:class zooc:6 ;
-    zoop:is "Airborne",
-        "Venomous" ;
-    zoop:legs "6" ;
-    zoop:name "Vespa" ;
-    zoop:nurt zoon:1 .
-
-zooi:wart_toad zoop:class zooc:5 ;
-    zoop:is "Aquatic",
-        "Toothed" ;
-    zoop:legs "4" ;
-    zoop:name "Wart Toad" ;
-    zoop:nurt zoon:1 .
-
-zooc:7 zoop:name "Invertebrate" .
-
-zooc:5 zoop:name "Amphibian" .
-
-zooc:4 zoop:name "Fish" .
-
-zooc:6 zoop:name "Insect" .
-
-zooc:1 zoop:name "Mammal" .
-
-zoon:2 zoop:name "Milk" .
-
-zooc:2 zoop:name "Bird" .
-
-zooc:3 zoop:name "Reptile" .
-
-zoon:1 zoop:name "Eggs" .
 
-
+###  http://zoo.org/pred/legs
+zoop:legs rdf:type owl:DatatypeProperty ;
+          rdfs:domain animalc:Animal ;
+          rdfs:range rdfs:Literal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#Property
+rdfs:Property rdf:type owl:Class .
+
+
+###  http://zoo.org/class/Animal
+animalc:Animal rdf:type owl:Class .
+
+
+###  http://zoo.org/class/Bird
+animalc:Bird rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty zoop:has ;
+                                   owl:hasValue "Feathers"
+                                 ] .
+
+
+###  http://zoo.org/class/Class
+animalc:Class rdf:type owl:Class .
+
+
+###  http://zoo.org/class/Fish
+animalc:Fish rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                          owl:onProperty zoop:nurt ;
+                                                          owl:hasValue <http://zoo.org/nurt/id/1>
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty zoop:has ;
+                                                          owl:hasValue "Fins"
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://zoo.org/class/Land
+animalc:Land rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty zoop:is ;
+                                                                             owl:hasValue "Airborne"
+                                                                           ]
+                                                        ]
+                                                        [ rdf:type owl:Class ;
+                                                          owl:complementOf [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty zoop:is ;
+                                                                             owl:hasValue "Aquatic"
+                                                                           ]
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://zoo.org/class/Mammal
+animalc:Mammal rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                            owl:onProperty zoop:nurt ;
+                                                            owl:hasValue <http://zoo.org/class/id/2>
+                                                          ]
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty zoop:has ;
+                                                            owl:hasValue "Backbone"
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://zoo.org/class/Nurt
+animalc:Nurt rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://zoo.org/animal/id/abelha
+zooi:abelha rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/6> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Hair" ;
+            zoop:is "Airborne" ,
+                    "Venomous" ;
+            zoop:legs "6" ;
+            zoop:name "Abelha" .
+
+
+###  http://zoo.org/animal/id/adder
+zooi:adder rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/3> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Tail" ;
+           zoop:is "Predator" ,
+                   "Toothed" ,
+                   "Venomous" ;
+           zoop:name "Adder" .
+
+
+###  http://zoo.org/animal/id/aguia-cinzenta
+zooi:aguia-cinzenta rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/2> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Feathers" ,
+                             "Tail" ;
+                    zoop:is "Airborne" ,
+                            "Predator" ;
+                    zoop:legs "2" ;
+                    zoop:name "Aguia-Cinzenta" .
+
+
+###  http://zoo.org/animal/id/alligator
+zooi:alligator rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/3> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Tail" ;
+               zoop:is "Aquatic" ,
+                       "Predator" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Alligator" .
+
+
+###  http://zoo.org/animal/id/anchovy
+zooi:anchovy rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/4> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:has "Backbone" ,
+                      "Fins" ,
+                      "Tail" ;
+             zoop:is "Aquatic" ;
+             zoop:name "Anchovy" .
+
+
+###  http://zoo.org/animal/id/anta
+zooi:anta rdf:type owl:NamedIndividual ;
+          zoop:class <http://zoo.org/class/id/1> ;
+          zoop:nurt <http://zoo.org/nurt/id/2> ;
+          zoop:has "Backbone" ,
+                   "Hair" ;
+          zoop:is "Toothed" ;
+          zoop:legs "4" ;
+          zoop:name "Anta" .
+
+
+###  http://zoo.org/animal/id/antlion
+zooi:antlion rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/6> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:is "Airborne" ;
+             zoop:legs "6" ;
+             zoop:name "Antlion" .
+
+
+###  http://zoo.org/animal/id/aphid
+zooi:aphid rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/6> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:legs "6" ;
+           zoop:name "Aphid" .
+
+
+###  http://zoo.org/animal/id/aracari-banana
+zooi:aracari-banana rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/2> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Feathers" ,
+                             "Tail" ;
+                    zoop:is "Airborne" ;
+                    zoop:legs "2" ;
+                    zoop:name "Aracari-Banana" .
+
+
+###  http://zoo.org/animal/id/arara-azul
+zooi:arara-azul rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/2> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ,
+                         "Feathers" ,
+                         "Tail" ;
+                zoop:is "Airborne" ;
+                zoop:legs "2" ;
+                zoop:name "Arara-Azul" .
+
+
+###  http://zoo.org/animal/id/arara-caninde
+zooi:arara-caninde rdf:type owl:NamedIndividual ;
+                   zoop:class <http://zoo.org/class/id/2> ;
+                   zoop:nurt <http://zoo.org/nurt/id/1> ;
+                   zoop:has "Backbone" ,
+                            "Feathers" ,
+                            "Tail" ;
+                   zoop:is "Airborne" ;
+                   zoop:legs "2" ;
+                   zoop:name "Arara-Caninde" .
+
+
+###  http://zoo.org/animal/id/ariranha
+zooi:ariranha rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/1> ;
+              zoop:nurt <http://zoo.org/nurt/id/2> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Hair" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ,
+                      "Predator" ,
+                      "Toothed" ;
+              zoop:legs "4" ;
+              zoop:name "Ariranha" .
+
+
+###  http://zoo.org/animal/id/baiacu
+zooi:baiacu rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/4> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Fins" ,
+                     "Tail" ;
+            zoop:is "Aquatic" ,
+                    "Toothed" ,
+                    "Venomous" ;
+            zoop:name "Baiacu" .
+
+
+###  http://zoo.org/animal/id/barracuda
+zooi:barracuda rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/4> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Fins" ,
+                        "Tail" ;
+               zoop:is "Aquatic" ,
+                       "Predator" ,
+                       "Toothed" ;
+               zoop:name "Barracuda" .
+
+
+###  http://zoo.org/animal/id/beetle
+zooi:beetle rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/6> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:legs "6" ;
+            zoop:name "Beetle" .
+
+
+###  http://zoo.org/animal/id/bicho-pau
+zooi:bicho-pau rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/7> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:legs "6" ;
+               zoop:name "Bicho-Pau" .
+
+
+###  http://zoo.org/animal/id/boa
+zooi:boa rdf:type owl:NamedIndividual ;
+         zoop:class <http://zoo.org/class/id/3> ;
+         zoop:nurt <http://zoo.org/nurt/id/1> ;
+         zoop:has "Backbone" ,
+                  "Tail" ;
+         zoop:is "Predator" ,
+                 "Toothed" ;
+         zoop:name "Boa" .
+
+
+###  http://zoo.org/animal/id/boto-cor-de-rosa
+zooi:boto-cor-de-rosa rdf:type owl:NamedIndividual ;
+                      zoop:class <http://zoo.org/class/id/1> ;
+                      zoop:nurt <http://zoo.org/nurt/id/2> ;
+                      zoop:has "Backbone" ,
+                               "Fins" ,
+                               "Tail" ;
+                      zoop:is "Aquatic" ,
+                              "Predator" ,
+                              "Toothed" ;
+                      zoop:name "Boto-Cor-De-Rosa" .
+
+
+###  http://zoo.org/animal/id/bugio
+zooi:bugio rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/1> ;
+           zoop:nurt <http://zoo.org/nurt/id/2> ;
+           zoop:has "Backbone" ,
+                    "Hair" ,
+                    "Tail" ;
+           zoop:is "Toothed" ;
+           zoop:legs "4" ;
+           zoop:name "Bugio" .
+
+
+###  http://zoo.org/animal/id/butterfly
+zooi:butterfly rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/6> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Hair" ;
+               zoop:is "Airborne" ;
+               zoop:legs "6" ;
+               zoop:name "Butterfly" .
+
+
+###  http://zoo.org/animal/id/cachorro-vinagre
+zooi:cachorro-vinagre rdf:type owl:NamedIndividual ;
+                      zoop:class <http://zoo.org/class/id/1> ;
+                      zoop:nurt <http://zoo.org/nurt/id/2> ;
+                      zoop:has "Backbone" ,
+                               "Hair" ,
+                               "Tail" ;
+                      zoop:is "Predator" ,
+                              "Toothed" ;
+                      zoop:legs "4" ;
+                      zoop:name "Cachorro-Vinagre" .
+
+
+###  http://zoo.org/animal/id/caracol-da-mata-atlantica
+zooi:caracol-da-mata-atlantica rdf:type owl:NamedIndividual ;
+                               zoop:class <http://zoo.org/class/id/7> ;
+                               zoop:nurt <http://zoo.org/nurt/id/1> ;
+                               zoop:name "Caracol-Da-Mata-Atlantica" .
+
+
+###  http://zoo.org/animal/id/caranguejeira
+zooi:caranguejeira rdf:type owl:NamedIndividual ;
+                   zoop:class <http://zoo.org/class/id/7> ;
+                   zoop:nurt <http://zoo.org/nurt/id/1> ;
+                   zoop:has "Hair" ;
+                   zoop:is "Predator" ,
+                           "Venomous" ;
+                   zoop:legs "8" ;
+                   zoop:name "Caranguejeira" .
+
+
+###  http://zoo.org/animal/id/cascudinho-de-caverna
+zooi:cascudinho-de-caverna rdf:type owl:NamedIndividual ;
+                           zoop:class <http://zoo.org/class/id/4> ;
+                           zoop:nurt <http://zoo.org/nurt/id/1> ;
+                           zoop:has "Backbone" ,
+                                    "Fins" ,
+                                    "Tail" ;
+                           zoop:is "Aquatic" ,
+                                   "Domestic" ,
+                                   "Toothed" ;
+                           zoop:name "Cascudinho-De-Caverna" .
+
+
+###  http://zoo.org/animal/id/chameleon
+zooi:chameleon rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/3> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Tail" ;
+               zoop:is "Domestic" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Chameleon" .
+
+
+###  http://zoo.org/animal/id/chaua
+zooi:chaua rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/2> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Feathers" ,
+                    "Tail" ;
+           zoop:is "Airborne" ,
+                   "Domestic" ;
+           zoop:legs "2" ;
+           zoop:name "Chaua" .
+
+
+###  http://zoo.org/animal/id/chimpanze
+zooi:chimpanze rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/1> ;
+               zoop:nurt <http://zoo.org/nurt/id/2> ;
+               zoop:has "Backbone" ,
+                        "Hair" ,
+                        "Tail" ;
+               zoop:is "Domestic" ,
+                       "Predator" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Chimpanze" .
+
+
+###  http://zoo.org/animal/id/cicada
+zooi:cicada rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/6> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:is "Airborne" ;
+            zoop:legs "6" ;
+            zoop:name "Cicada" .
+
+
+###  http://zoo.org/animal/id/cobra-cipo
+zooi:cobra-cipo rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/3> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ,
+                         "Tail" ;
+                zoop:is "Predator" ,
+                        "Toothed" ;
+                zoop:name "Cobra-Cipo" .
+
+
+###  http://zoo.org/animal/id/cockroach
+zooi:cockroach rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/6> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:legs "6" ;
+               zoop:name "Cockroach" .
+
+
+###  http://zoo.org/animal/id/cricket
+zooi:cricket rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/6> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:legs "6" ;
+             zoop:name "Cricket" .
+
+
+###  http://zoo.org/animal/id/crocodile
+zooi:crocodile rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/3> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Tail" ;
+               zoop:is "Aquatic" ,
+                       "Predator" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Crocodile" .
+
+
+###  http://zoo.org/animal/id/dart_frog
+zooi:dart_frog rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/5> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ;
+               zoop:is "Aquatic" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Dart Frog" .
+
+
+###  http://zoo.org/animal/id/dragonfly
+zooi:dragonfly rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/6> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:is "Airborne" ;
+               zoop:legs "6" ;
+               zoop:name "Dragonfly" .
+
+
+###  http://zoo.org/animal/id/ema
+zooi:ema rdf:type owl:NamedIndividual ;
+         zoop:class <http://zoo.org/class/id/2> ;
+         zoop:nurt <http://zoo.org/nurt/id/1> ;
+         zoop:has "Backbone" ,
+                  "Feathers" ;
+         zoop:legs "2" ;
+         zoop:name "Ema" .
+
+
+###  http://zoo.org/animal/id/firebelly
+zooi:firebelly rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/5> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ;
+               zoop:is "Aquatic" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Firebelly" .
+
+
+###  http://zoo.org/animal/id/flounder
+zooi:flounder rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/4> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ;
+              zoop:name "Flounder" .
+
+
+###  http://zoo.org/animal/id/gato-maracaja
+zooi:gato-maracaja rdf:type owl:NamedIndividual ;
+                   zoop:class <http://zoo.org/class/id/1> ;
+                   zoop:nurt <http://zoo.org/nurt/id/2> ;
+                   zoop:has "Backbone" ,
+                            "Hair" ,
+                            "Tail" ;
+                   zoop:is "Predator" ,
+                           "Toothed" ;
+                   zoop:legs "4" ;
+                   zoop:name "Gato-Maracaja" .
+
+
+###  http://zoo.org/animal/id/gaviao-pombo
+zooi:gaviao-pombo rdf:type owl:NamedIndividual ;
+                  zoop:class <http://zoo.org/class/id/2> ;
+                  zoop:nurt <http://zoo.org/nurt/id/1> ;
+                  zoop:has "Backbone" ,
+                           "Feathers" ,
+                           "Tail" ;
+                  zoop:is "Airborne" ,
+                          "Predator" ;
+                  zoop:legs "2" ;
+                  zoop:name "Gaviao-Pombo" .
+
+
+###  http://zoo.org/animal/id/gecko
+zooi:gecko rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/3> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Tail" ;
+           zoop:is "Domestic" ,
+                   "Toothed" ;
+           zoop:legs "4" ;
+           zoop:name "Gecko" .
+
+
+###  http://zoo.org/animal/id/gharial
+zooi:gharial rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/3> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:has "Backbone" ,
+                      "Tail" ;
+             zoop:is "Aquatic" ,
+                     "Predator" ,
+                     "Toothed" ;
+             zoop:legs "4" ;
+             zoop:name "Gharial" .
+
+
+###  http://zoo.org/animal/id/guara
+zooi:guara rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/2> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Feathers" ,
+                    "Tail" ;
+           zoop:is "Airborne" ,
+                   "Aquatic" ;
+           zoop:legs "2" ;
+           zoop:name "Guara" .
+
+
+###  http://zoo.org/animal/id/halibut
+zooi:halibut rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/4> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:has "Backbone" ,
+                      "Fins" ,
+                      "Tail" ;
+             zoop:is "Aquatic" ;
+             zoop:name "Halibut" .
+
+
+###  http://zoo.org/animal/id/harpia
+zooi:harpia rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/2> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Feathers" ,
+                     "Tail" ;
+            zoop:is "Airborne" ,
+                    "Predator" ;
+            zoop:legs "2" ;
+            zoop:name "Harpia" .
+
+
+###  http://zoo.org/animal/id/hornet
+zooi:hornet rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/6> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:is "Airborne" ,
+                    "Predator" ,
+                    "Venomous" ;
+            zoop:legs "6" ;
+            zoop:name "Hornet" .
+
+
+###  http://zoo.org/animal/id/iguana
+zooi:iguana rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Domestic" ,
+                    "Predator" ,
+                    "Toothed" ;
+            zoop:legs "4" ;
+            zoop:name "Iguana" .
+
+
+###  http://zoo.org/animal/id/jabuti
+zooi:jabuti rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ;
+            zoop:is "Aquatic" ,
+                    "Domestic" ;
+            zoop:legs "4" ;
+            zoop:name "Jabuti" .
+
+
+###  http://zoo.org/animal/id/jacare-coroa
+zooi:jacare-coroa rdf:type owl:NamedIndividual ;
+                  zoop:class <http://zoo.org/class/id/3> ;
+                  zoop:nurt <http://zoo.org/nurt/id/1> ;
+                  zoop:has "Backbone" ,
+                           "Tail" ;
+                  zoop:is "Aquatic" ,
+                          "Predator" ,
+                          "Toothed" ;
+                  zoop:legs "4" ;
+                  zoop:name "Jacare-Coroa" .
+
+
+###  http://zoo.org/animal/id/jacurutu
+zooi:jacurutu rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/2> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Feathers" ,
+                       "Tail" ;
+              zoop:is "Airborne" ,
+                      "Predator" ;
+              zoop:legs "2" ;
+              zoop:name "Jacurutu" .
+
+
+###  http://zoo.org/animal/id/jacutinga
+zooi:jacutinga rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/2> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Feathers" ,
+                        "Tail" ;
+               zoop:is "Airborne" ;
+               zoop:legs "2" ;
+               zoop:name "Jacutinga" .
+
+
+###  http://zoo.org/animal/id/jaguatirica
+zooi:jaguatirica rdf:type owl:NamedIndividual ;
+                 zoop:class <http://zoo.org/class/id/1> ;
+                 zoop:nurt <http://zoo.org/nurt/id/2> ;
+                 zoop:has "Backbone" ,
+                          "Hair" ,
+                          "Tail" ;
+                 zoop:is "Predator" ,
+                         "Toothed" ;
+                 zoop:legs "4" ;
+                 zoop:name "Jaguatirica" .
+
+
+###  http://zoo.org/animal/id/jandaia-amarela
+zooi:jandaia-amarela rdf:type owl:NamedIndividual ;
+                     zoop:class <http://zoo.org/class/id/2> ;
+                     zoop:nurt <http://zoo.org/nurt/id/1> ;
+                     zoop:has "Backbone" ,
+                              "Feathers" ,
+                              "Tail" ;
+                     zoop:is "Airborne" ;
+                     zoop:legs "2" ;
+                     zoop:name "Jandaia-Amarela" .
+
+
+###  http://zoo.org/animal/id/jararaca-ilhoa
+zooi:jararaca-ilhoa rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/3> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Tail" ;
+                    zoop:is "Predator" ,
+                            "Toothed" ,
+                            "Venomous" ;
+                    zoop:name "Jararaca-Ilhoa" .
+
+
+###  http://zoo.org/animal/id/jellyfish
+zooi:jellyfish rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/7> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:is "Aquatic" ,
+                       "Venomous" ;
+               zoop:name "Jellyfish" .
+
+
+###  http://zoo.org/animal/id/jiboia
+zooi:jiboia rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Predator" ,
+                    "Toothed" ;
+            zoop:name "Jiboia" .
+
+
+###  http://zoo.org/animal/id/joaninha
+zooi:joaninha rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/6> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:is "Airborne" ;
+              zoop:legs "6" ;
+              zoop:name "Joaninha" .
+
+
+###  http://zoo.org/animal/id/lambari
+zooi:lambari rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/4> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:has "Backbone" ,
+                      "Fins" ,
+                      "Tail" ;
+             zoop:is "Aquatic" ,
+                     "Domestic" ,
+                     "Toothed" ;
+             zoop:name "Lambari" .
+
+
+###  http://zoo.org/animal/id/lizard
+zooi:lizard rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Predator" ,
+                    "Toothed" ;
+            zoop:legs "4" ;
+            zoop:name "Lizard" .
+
+
+###  http://zoo.org/animal/id/lobo-guara
+zooi:lobo-guara rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/1> ;
+                zoop:nurt <http://zoo.org/nurt/id/2> ;
+                zoop:has "Backbone" ,
+                         "Hair" ,
+                         "Tail" ;
+                zoop:is "Predator" ,
+                        "Toothed" ;
+                zoop:legs "4" ;
+                zoop:name "Lobo-Guara" .
+
+
+###  http://zoo.org/animal/id/macaco-aranha
+zooi:macaco-aranha rdf:type owl:NamedIndividual ;
+                   zoop:class <http://zoo.org/class/id/1> ;
+                   zoop:nurt <http://zoo.org/nurt/id/2> ;
+                   zoop:has "Backbone" ,
+                            "Hair" ,
+                            "Tail" ;
+                   zoop:is "Toothed" ;
+                   zoop:legs "4" ;
+                   zoop:name "Macaco-Aranha" .
+
+
+###  http://zoo.org/animal/id/macaco-barrigudo
+zooi:macaco-barrigudo rdf:type owl:NamedIndividual ;
+                      zoop:class <http://zoo.org/class/id/1> ;
+                      zoop:nurt <http://zoo.org/nurt/id/2> ;
+                      zoop:has "Backbone" ,
+                               "Hair" ,
+                               "Tail" ;
+                      zoop:is "Toothed" ;
+                      zoop:legs "4" ;
+                      zoop:name "Macaco-Barrigudo" .
+
+
+###  http://zoo.org/animal/id/mackerel
+zooi:mackerel rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/4> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ;
+              zoop:name "Mackerel" .
+
+
+###  http://zoo.org/animal/id/macuco
+zooi:macuco rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/2> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Feathers" ;
+            zoop:legs "2" ;
+            zoop:name "Macuco" .
+
+
+###  http://zoo.org/animal/id/mantis
+zooi:mantis rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/6> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:is "Predator" ;
+            zoop:legs "6" ;
+            zoop:name "Mantis" .
+
+
+###  http://zoo.org/animal/id/mariposa
+zooi:mariposa rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/6> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Hair" ;
+              zoop:is "Airborne" ;
+              zoop:legs "6" ;
+              zoop:name "Mariposa" .
+
+
+###  http://zoo.org/animal/id/marlin
+zooi:marlin rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/4> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Fins" ,
+                     "Tail" ;
+            zoop:is "Aquatic" ;
+            zoop:name "Marlin" .
+
+
+###  http://zoo.org/animal/id/matrinxa
+zooi:matrinxa rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/4> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ,
+                      "Predator" ,
+                      "Toothed" ;
+              zoop:name "Matrinxa" .
+
+
+###  http://zoo.org/animal/id/mico-leao-dourado
+zooi:mico-leao-dourado rdf:type owl:NamedIndividual ;
+                       zoop:class <http://zoo.org/class/id/1> ;
+                       zoop:nurt <http://zoo.org/nurt/id/2> ;
+                       zoop:has "Backbone" ,
+                                "Hair" ,
+                                "Tail" ;
+                       zoop:is "Domestic" ,
+                               "Toothed" ;
+                       zoop:legs "4" ;
+                       zoop:name "Mico-Leao-Dourado" .
+
+
+###  http://zoo.org/animal/id/mono-carvoeiro
+zooi:mono-carvoeiro rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/1> ;
+                    zoop:nurt <http://zoo.org/nurt/id/2> ;
+                    zoop:has "Backbone" ,
+                             "Hair" ,
+                             "Tail" ;
+                    zoop:is "Toothed" ;
+                    zoop:legs "4" ;
+                    zoop:name "Mono-Carvoeiro" .
+
+
+###  http://zoo.org/animal/id/mosquito
+zooi:mosquito rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/6> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:is "Airborne" ;
+              zoop:legs "6" ;
+              zoop:name "Mosquito" .
+
+
+###  http://zoo.org/animal/id/murucututu
+zooi:murucututu rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/2> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ,
+                         "Feathers" ,
+                         "Tail" ;
+                zoop:is "Airborne" ,
+                        "Predator" ;
+                zoop:legs "2" ;
+                zoop:name "Murucututu" .
+
+
+###  http://zoo.org/animal/id/mutum
+zooi:mutum rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/2> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Feathers" ,
+                    "Tail" ;
+           zoop:legs "2" ;
+           zoop:name "Mutum" .
+
+
+###  http://zoo.org/animal/id/onca-pintada
+zooi:onca-pintada rdf:type owl:NamedIndividual ;
+                  zoop:class <http://zoo.org/class/id/1> ;
+                  zoop:nurt <http://zoo.org/nurt/id/2> ;
+                  zoop:has "Backbone" ,
+                           "Hair" ,
+                           "Tail" ;
+                  zoop:is "Predator" ,
+                          "Toothed" ;
+                  zoop:legs "4" ;
+                  zoop:name "Onca-Pintada" .
+
+
+###  http://zoo.org/animal/id/orangotango
+zooi:orangotango rdf:type owl:NamedIndividual ;
+                 zoop:class <http://zoo.org/class/id/1> ;
+                 zoop:nurt <http://zoo.org/nurt/id/2> ;
+                 zoop:has "Backbone" ,
+                          "Hair" ,
+                          "Tail" ;
+                 zoop:is "Domestic" ,
+                         "Toothed" ;
+                 zoop:legs "4" ;
+                 zoop:name "Orangotango" .
+
+
+###  http://zoo.org/animal/id/palmetto
+zooi:palmetto rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/6> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:is "Airborne" ,
+                      "Predator" ;
+              zoop:legs "6" ;
+              zoop:name "Palmetto" .
+
+
+###  http://zoo.org/animal/id/papagaio-de-cara-roxa
+zooi:papagaio-de-cara-roxa rdf:type owl:NamedIndividual ;
+                           zoop:class <http://zoo.org/class/id/2> ;
+                           zoop:nurt <http://zoo.org/nurt/id/1> ;
+                           zoop:has "Backbone" ,
+                                    "Feathers" ,
+                                    "Tail" ;
+                           zoop:is "Airborne" ,
+                                   "Domestic" ;
+                           zoop:legs "2" ;
+                           zoop:name "Papagaio-De-Cara-Roxa" .
+
+
+###  http://zoo.org/animal/id/pato-de-crista
+zooi:pato-de-crista rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/2> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Feathers" ,
+                             "Tail" ;
+                    zoop:is "Airborne" ,
+                            "Aquatic" ;
+                    zoop:legs "2" ;
+                    zoop:name "Pato-De-Crista" .
+
+
+###  http://zoo.org/animal/id/pavo
+zooi:pavo rdf:type owl:NamedIndividual ;
+          zoop:class <http://zoo.org/class/id/2> ;
+          zoop:nurt <http://zoo.org/nurt/id/1> ;
+          zoop:has "Backbone" ,
+                   "Feathers" ,
+                   "Tail" ;
+          zoop:is "Airborne" ;
+          zoop:legs "2" ;
+          zoop:name "Pavo" .
+
+
+###  http://zoo.org/animal/id/peixe-boi
+zooi:peixe-boi rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/1> ;
+               zoop:nurt <http://zoo.org/nurt/id/2> ;
+               zoop:has "Backbone" ,
+                        "Fins" ,
+                        "Hair" ,
+                        "Tail" ;
+               zoop:is "Aquatic" ,
+                       "Toothed" ;
+               zoop:legs "2" ;
+               zoop:name "Peixe-Boi" .
+
+
+###  http://zoo.org/animal/id/perereca-de-alcatrazes
+zooi:perereca-de-alcatrazes rdf:type owl:NamedIndividual ;
+                            zoop:class <http://zoo.org/class/id/5> ;
+                            zoop:nurt <http://zoo.org/nurt/id/1> ;
+                            zoop:has "Backbone" ;
+                            zoop:is "Aquatic" ;
+                            zoop:legs "4" ;
+                            zoop:name "Perereca-De-Alcatrazes" .
+
+
+###  http://zoo.org/animal/id/pirarucu
+zooi:pirarucu rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/4> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ,
+                      "Predator" ,
+                      "Toothed" ;
+              zoop:name "Pirarucu" .
+
+
+###  http://zoo.org/animal/id/pirilampo
+zooi:pirilampo rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/6> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:is "Airborne" ;
+               zoop:legs "6" ;
+               zoop:name "Pirilampo" .
+
+
+###  http://zoo.org/animal/id/python
+zooi:python rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Predator" ,
+                    "Toothed" ,
+                    "Venomous" ;
+            zoop:name "Python" .
+
+
+###  http://zoo.org/animal/id/queixada
+zooi:queixada rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/1> ;
+              zoop:nurt <http://zoo.org/nurt/id/2> ;
+              zoop:has "Backbone" ,
+                       "Hair" ,
+                       "Tail" ;
+              zoop:is "Predator" ,
+                      "Toothed" ;
+              zoop:legs "4" ;
+              zoop:name "Queixada" .
+
+
+###  http://zoo.org/animal/id/ra-flecha-azul
+zooi:ra-flecha-azul rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/5> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ;
+                    zoop:is "Aquatic" ,
+                            "Venomous" ;
+                    zoop:legs "4" ;
+                    zoop:name "Ra-Flecha-Azul" .
+
+
+###  http://zoo.org/animal/id/ra-pimenta
+zooi:ra-pimenta rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/5> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ;
+                zoop:is "Aquatic" ;
+                zoop:legs "4" ;
+                zoop:name "Ra-Pimenta" .
+
+
+###  http://zoo.org/animal/id/raia-chita
+zooi:raia-chita rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/4> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ,
+                         "Fins" ,
+                         "Tail" ;
+                zoop:is "Aquatic" ,
+                        "Predator" ,
+                        "Toothed" ,
+                        "Venomous" ;
+                zoop:name "Raia-Chita" .
+
+
+###  http://zoo.org/animal/id/salamander
+zooi:salamander rdf:type owl:NamedIndividual ;
+                zoop:class <http://zoo.org/class/id/5> ;
+                zoop:nurt <http://zoo.org/nurt/id/1> ;
+                zoop:has "Backbone" ,
+                         "Tail" ;
+                zoop:is "Aquatic" ,
+                        "Domestic" ,
+                        "Toothed" ;
+                zoop:legs "4" ;
+                zoop:name "Salamander" .
+
+
+###  http://zoo.org/animal/id/sapo-barriga-de-fogo
+zooi:sapo-barriga-de-fogo rdf:type owl:NamedIndividual ;
+                          zoop:class <http://zoo.org/class/id/5> ;
+                          zoop:nurt <http://zoo.org/nurt/id/1> ;
+                          zoop:has "Backbone" ;
+                          zoop:is "Aquatic" ,
+                                  "Domestic" ;
+                          zoop:legs "4" ;
+                          zoop:name "Sapo-Barriga-De-Fogo" .
+
+
+###  http://zoo.org/animal/id/sapo-cururu
+zooi:sapo-cururu rdf:type owl:NamedIndividual ;
+                 zoop:class <http://zoo.org/class/id/5> ;
+                 zoop:nurt <http://zoo.org/nurt/id/1> ;
+                 zoop:has "Backbone" ;
+                 zoop:is "Aquatic" ,
+                         "Predator" ,
+                         "Toothed" ,
+                         "Venomous" ;
+                 zoop:legs "4" ;
+                 zoop:name "Sapo-Cururu" .
+
+
+###  http://zoo.org/animal/id/sapo-de-chifre
+zooi:sapo-de-chifre rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/5> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ;
+                    zoop:is "Aquatic" ,
+                            "Predator" ,
+                            "Toothed" ;
+                    zoop:legs "4" ;
+                    zoop:name "Sapo-De-Chifre" .
+
+
+###  http://zoo.org/animal/id/sauva-limao
+zooi:sauva-limao rdf:type owl:NamedIndividual ;
+                 zoop:class <http://zoo.org/class/id/7> ;
+                 zoop:nurt <http://zoo.org/nurt/id/1> ;
+                 zoop:has "Hair" ;
+                 zoop:is "Predator" ,
+                         "Venomous" ;
+                 zoop:legs "6" ;
+                 zoop:name "Sauva-Limao" .
+
+
+###  http://zoo.org/animal/id/scallop
+zooi:scallop rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/7> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:is "Aquatic" ;
+             zoop:name "Scallop" .
+
+
+###  http://zoo.org/animal/id/silkworm
+zooi:silkworm rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/7> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:name "Silkworm" .
+
+
+###  http://zoo.org/animal/id/siren
+zooi:siren rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/5> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Tail" ;
+           zoop:is "Aquatic" ,
+                   "Toothed" ;
+           zoop:legs "2" ;
+           zoop:name "Siren" .
+
+
+###  http://zoo.org/animal/id/skink
+zooi:skink rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/3> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Tail" ;
+           zoop:is "Toothed" ;
+           zoop:legs "4" ;
+           zoop:name "Skink" .
+
+
+###  http://zoo.org/animal/id/snail
+zooi:snail rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/7> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:name "Snail" .
+
+
+###  http://zoo.org/animal/id/spider
+zooi:spider rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/7> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:is "Predator" ,
+                    "Toothed" ,
+                    "Venomous" ;
+            zoop:legs "8" ;
+            zoop:name "Spider" .
+
+
+###  http://zoo.org/animal/id/squid
+zooi:squid rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/7> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:is "Aquatic" ;
+           zoop:name "Squid" .
+
+
+###  http://zoo.org/animal/id/sucuri
+zooi:sucuri rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Aquatic" ,
+                    "Predator" ,
+                    "Toothed" ;
+            zoop:name "Sucuri" .
+
+
+###  http://zoo.org/animal/id/tamandua-bandeira
+zooi:tamandua-bandeira rdf:type owl:NamedIndividual ;
+                       zoop:class <http://zoo.org/class/id/1> ;
+                       zoop:nurt <http://zoo.org/nurt/id/2> ;
+                       zoop:has "Backbone" ,
+                                "Hair" ,
+                                "Tail" ;
+                       zoop:legs "4" ;
+                       zoop:name "Tamandua-Bandeira" .
+
+
+###  http://zoo.org/animal/id/tambaqui
+zooi:tambaqui rdf:type owl:NamedIndividual ;
+              zoop:class <http://zoo.org/class/id/4> ;
+              zoop:nurt <http://zoo.org/nurt/id/1> ;
+              zoop:has "Backbone" ,
+                       "Fins" ,
+                       "Tail" ;
+              zoop:is "Aquatic" ,
+                      "Toothed" ;
+              zoop:name "Tambaqui" .
+
+
+###  http://zoo.org/animal/id/tracaja
+zooi:tracaja rdf:type owl:NamedIndividual ;
+             zoop:class <http://zoo.org/class/id/3> ;
+             zoop:nurt <http://zoo.org/nurt/id/1> ;
+             zoop:has "Backbone" ;
+             zoop:is "Aquatic" ,
+                     "Domestic" ;
+             zoop:legs "4" ;
+             zoop:name "Tracaja" .
+
+
+###  http://zoo.org/animal/id/tree_frog
+zooi:tree_frog rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/5> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ;
+               zoop:is "Aquatic" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Tree Frog" .
+
+
+###  http://zoo.org/animal/id/trout
+zooi:trout rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/4> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:has "Backbone" ,
+                    "Fins" ,
+                    "Tail" ;
+           zoop:is "Aquatic" ;
+           zoop:name "Trout" .
+
+
+###  http://zoo.org/animal/id/tubarao-raposa
+zooi:tubarao-raposa rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/4> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Fins" ,
+                             "Tail" ;
+                    zoop:is "Aquatic" ,
+                            "Predator" ,
+                            "Toothed" ;
+                    zoop:name "Tubarao-Raposa" .
+
+
+###  http://zoo.org/animal/id/tucano-de-bico-preto
+zooi:tucano-de-bico-preto rdf:type owl:NamedIndividual ;
+                          zoop:class <http://zoo.org/class/id/2> ;
+                          zoop:nurt <http://zoo.org/nurt/id/1> ;
+                          zoop:has "Backbone" ,
+                                   "Feathers" ,
+                                   "Tail" ;
+                          zoop:is "Airborne" ;
+                          zoop:legs "2" ;
+                          zoop:name "Tucano-De-Bico-Preto" .
+
+
+###  http://zoo.org/animal/id/turtle
+zooi:turtle rdf:type owl:NamedIndividual ;
+            zoop:class <http://zoo.org/class/id/3> ;
+            zoop:nurt <http://zoo.org/nurt/id/1> ;
+            zoop:has "Backbone" ,
+                     "Tail" ;
+            zoop:is "Aquatic" ,
+                    "Domestic" ;
+            zoop:legs "4" ;
+            zoop:name "Turtle" .
+
+
+###  http://zoo.org/animal/id/urso-de-oculos
+zooi:urso-de-oculos rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/1> ;
+                    zoop:nurt <http://zoo.org/nurt/id/2> ;
+                    zoop:has "Backbone" ,
+                             "Hair" ;
+                    zoop:is "Predator" ,
+                            "Toothed" ;
+                    zoop:legs "4" ;
+                    zoop:name "Urso-De-Oculos" .
+
+
+###  http://zoo.org/animal/id/urubu-rei
+zooi:urubu-rei rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/2> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ,
+                        "Feathers" ,
+                        "Tail" ;
+               zoop:is "Airborne" ,
+                       "Predator" ;
+               zoop:legs "2" ;
+               zoop:name "Urubu-Rei" .
+
+
+###  http://zoo.org/animal/id/urutu-cruzeiro
+zooi:urutu-cruzeiro rdf:type owl:NamedIndividual ;
+                    zoop:class <http://zoo.org/class/id/3> ;
+                    zoop:nurt <http://zoo.org/nurt/id/1> ;
+                    zoop:has "Backbone" ,
+                             "Tail" ;
+                    zoop:is "Predator" ,
+                            "Toothed" ,
+                            "Venomous" ;
+                    zoop:name "Urutu-Cruzeiro" .
+
+
+###  http://zoo.org/animal/id/vespa
+zooi:vespa rdf:type owl:NamedIndividual ;
+           zoop:class <http://zoo.org/class/id/6> ;
+           zoop:nurt <http://zoo.org/nurt/id/1> ;
+           zoop:is "Airborne" ,
+                   "Predator" ,
+                   "Venomous" ;
+           zoop:legs "6" ;
+           zoop:name "Vespa" .
+
+
+###  http://zoo.org/animal/id/wart_toad
+zooi:wart_toad rdf:type owl:NamedIndividual ;
+               zoop:class <http://zoo.org/class/id/5> ;
+               zoop:nurt <http://zoo.org/nurt/id/1> ;
+               zoop:has "Backbone" ;
+               zoop:is "Aquatic" ,
+                       "Toothed" ;
+               zoop:legs "4" ;
+               zoop:name "Wart Toad" .
+
+
+###  http://zoo.org/class/id/1
+<http://zoo.org/class/id/1> rdf:type owl:NamedIndividual ;
+                            zoop:name "Mammal" .
+
+
+###  http://zoo.org/class/id/2
+<http://zoo.org/class/id/2> rdf:type owl:NamedIndividual ;
+                            zoop:name "Bird" .
+
+
+###  http://zoo.org/class/id/3
+<http://zoo.org/class/id/3> rdf:type owl:NamedIndividual ;
+                            zoop:name "Reptile" .
+
+
+###  http://zoo.org/class/id/4
+<http://zoo.org/class/id/4> rdf:type owl:NamedIndividual ;
+                            zoop:name "Fish" .
+
+
+###  http://zoo.org/class/id/5
+<http://zoo.org/class/id/5> rdf:type owl:NamedIndividual ;
+                            zoop:name "Amphibian" .
+
+
+###  http://zoo.org/class/id/6
+<http://zoo.org/class/id/6> rdf:type owl:NamedIndividual ;
+                            zoop:name "Insect" .
+
+
+###  http://zoo.org/class/id/7
+<http://zoo.org/class/id/7> rdf:type owl:NamedIndividual ;
+                            zoop:name "Invertebrate" .
+
+
+###  http://zoo.org/nurt/id/1
+<http://zoo.org/nurt/id/1> rdf:type owl:NamedIndividual ;
+                           zoop:name "Eggs" .
+
+
+###  http://zoo.org/nurt/id/2
+<http://zoo.org/nurt/id/2> rdf:type owl:NamedIndividual ;
+                           zoop:name "Milk" .
+
+
+###  http://zoo.org/pred/class
+zoop:class rdf:type owl:NamedIndividual ,
+                    rdfs:Property .
+
+
+###  http://zoo.org/pred/has
+zoop:has rdf:type owl:NamedIndividual ,
+                  rdfs:Property .
+
+
+###  http://zoo.org/pred/is
+zoop:is rdf:type owl:NamedIndividual ,
+                 rdfs:Property .
+
+
+###  http://zoo.org/pred/legs
+zoop:legs rdf:type owl:NamedIndividual ,
+                   rdfs:Property .
+
+
+###  http://zoo.org/pred/nurt
+zoop:nurt rdf:type owl:NamedIndividual ,
+                   rdfs:Property .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
