@@ -1,16 +1,3 @@
--- Bird animals
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX animalc: <http://zoo.org/class/>
-PREFIX zoop: <http://zoo.org/pred/>
-CONSTRUCT {
-   ?s a animalc:Bird.
-}
-WHERE {
-    ?s a animalc:Animal.
-    ?s zoop:has "Feathers".
-}
-
-
 -- Land animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
@@ -25,35 +12,6 @@ WHERE {
 }
 
 
--- Mammal animals
-PREFIX animalc: <http://zoo.org/class/>
-PREFIX zoop: <http://zoo.org/pred/>
-PREFIX zoon: <http://zoo.org/nurt/id/>
-CONSTRUCT {
-	?s a animalc:Mammal.
-}
-WHERE {
-	OPTIONAL {
-		?s zoop:has "Hair".
-	}
-	?s zoop:nurt zoon:2.
-	?s zoop:has "Backbone".
-}
-
-
--- Fish animals
-PREFIX animalc: <http://zoo.org/class/>
-PREFIX zoop: <http://zoo.org/pred/>
-PREFIX zoon: <http://zoo.org/nurt/id/>
-CONSTRUCT {
-	?s a animalc:Fish.
-}
-WHERE {
-	?s zoop:has "Fins".
-    ?s zoop:nurt zoon:1.
-}
-
-
 -- Arthropod animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
@@ -63,53 +21,116 @@ CONSTRUCT {
    ?s a animalc:Arthropod.
 }
 WHERE {
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Insect".
-	}
-    UNION
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Invertebrate".
-    }
+	?s zoop:class ?classid.
+	?classid zoop:name "Insect".
 }
 
 
--- Reptilia animals
+-- Warm-Blood animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
 PREFIX zoop: <http://zoo.org/pred/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 CONSTRUCT {
-   ?s a animalc:Reptilia.
+   ?s a animalc:Warm-Blood.
 }
 WHERE {
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Amphibian".
+	{
+		?s a animalc:Animal.
+		?s zoop:has "Feathers".
 	}
-    UNION
-    {
-        ?s zoop:class ?classid.
-        ?classid zoop:name "Reptile".
-    }
+	UNION
+	{
+		OPTIONAL {
+			?s zoop:has "Hair".
+		}
+		?s zoop:nurt zoon:2.
+		?s zoop:has "Backbone".
+	}
 }
 
 
+-- Cold-Blood animals
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+PREFIX zoon: <http://zoo.org/nurt/id/>
+CONSTRUCT {
+	?s a animalc:Cold-Blood.
+}
+WHERE {
+	?s zoop:has "Fins".
+    ?s zoop:nurt zoon:1.
+	UNION
+	{
+		?s zoop:class ?classid.
+		?classid zoop:name "Reptile".
+	}
+	UNION
+	{
+		?s zoop:class ?classid.
+		?classid zoop:name "Amphibian".
+	}
+}
 
 
-
-
-
-
-
--- Insect animals
+-- Backbone animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
 PREFIX zoop: <http://zoo.org/pred/>
 CONSTRUCT {
-	?s a animalc:Insect.
+   ?s a animalc:Backbone.
 }
 WHERE {
-	?s zoop:legs "6".
-	?s zoop:nurt nurt:1.
+	{
+		?s a animalc:Animal.
+		?s zoop:has "Feathers".
+	}
+	UNION
+	{
+		OPTIONAL {
+			?s zoop:has "Hair".
+		}
+		?s zoop:nurt zoon:2.
+		?s zoop:has "Backbone".
+	}
+	UNION
+	{
+		?s zoop:has "Fins".
+		?s zoop:nurt zoon:1.
+	}
+	UNION
+	{
+		?s zoop:class ?classid.
+		?classid zoop:name "Reptile".
+	}
+	UNION
+	{
+		?s zoop:class ?classid.
+		?classid zoop:name "Amphibian".
+	}
 }
+
+
+-- No-Backbone animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+CONSTRUCT {
+   ?s a animalc:No-Backbone.
+}
+WHERE {
+    ?s a animalc:Animal.
+	filter NOT EXISTS { ?s zoop:has "Backbone". }.
+}
+
+
+
+Animals
+
+
+Backbone																No-Backbone
+
+
+Warm-Blood				Cold-Blood										Arthropod
+
+
+Mammal		Bird		Fish		Reptile		Amphibian				Insect			Invertebrate
