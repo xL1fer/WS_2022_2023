@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="m-title">[ Inferences ]</h1>
+
+<div style="text-align: center;">
+
+    <form class="insert-inference-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="insert-land-inference" value="land" />
+    
+        <button class="button-inference" type="submit">Insert Land</button>
+    </form>
+
+    <form class="insert-inference-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="insert-nobackbone-inference" value="nobackbone" />
+    
+        <button class="button-inference" type="submit">Insert No-Backbone</button>
+    </form>
+    
+</div>
+
+<table class="center">
+    <tr class="table-row1">
+        <th colspan="7">Animal</th>
+    </tr>
+    <tr class="table-row2">
+        <td colspan="5">Backbone</td>
+        <td colspan="2">No-Backbone</td>
+    </tr>
+    <tr class="table-row3">
+        <td colspan="2">Warm-Blood</td>
+        <td colspan="3">Cold-Blood</td>
+        <td colspan="1">Arthropod</td>
+        <td colspan="1" class="empty"></td>
+    </tr>
+    <tr class="table-row4">
+        <td>Mammal</td>
+        <td>Bird</td>
+        <td>Reptile</td>
+        <td>Fish</td>
+        <td>Amphibian</td>
+        <td>Insect</td>
+        <td class="invertebrate">Invertebrate</td>
+    </tr>
+</table>
+
+<!--
+<table class="center">
+    <tr>
+        <th>
+            <span class="pyramid-item">Animal</span>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <span class="pyramid-item">Backbone</span>
+            <span class="pyramid-item">No-Backbone</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="pyramid-item" style="margin-right: 5rem;">Warm-Blood</span>
+            <span class="pyramid-item" style="margin-right: 5rem;">Cold-Blood</span>
+            <span class="pyramid-item" style="margin-right: 10rem;">Arthropod</span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <span class="pyramid-item">Mammal</span>
+            <span class="pyramid-item">Bird</span>
+            <span class="pyramid-item">Reptile</span>
+            <span class="pyramid-item">Fish</span>
+            <span class="pyramid-item">Amphibian</span>
+            <span class="pyramid-item">Insect</span>
+            <span class="pyramid-item">Invertebrate</span>
+        </td>
+    </tr>
+</table>
+-->
+
+
+{% endblock %}

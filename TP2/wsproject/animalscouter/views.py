@@ -284,13 +284,25 @@ def queries(request):
                     ?animal_id ?p ?o.
                 }
                 """
-        
         query = query.replace("_animal_name", request.POST['animal_item'].replace("_", " "))
-
         payload_query = { "query": query }
         res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
-
         res = json.loads(res)
+
+        land_query = """
+                base <http://zoo.org/>
+                prefix pred: <http://zoo.org/pred/>
+                prefix animalc: <http://zoo.org/class/>
+                select ?animal_id ?p ?o
+                where {
+                    ?animal_id pred:name "_animal_name".
+                    ?animal_id a animalc:Land.
+                }
+                """
+        land_query = land_query.replace("_animal_name", request.POST['animal_item'].replace("_", " "))
+        payload_land_query = { "query": land_query }
+        res_land = accessor.sparql_select(body=payload_land_query, repo_name=repo_name)
+        res_land = json.loads(res_land)
 
         description = []
         for e in res['results']['bindings']:
@@ -350,6 +362,9 @@ def queries(request):
                 value = e['o']['value'].lower()
 
             description.append((key.title(), value.title()))
+
+        if (len(res_land['results']['bindings']) > 0):
+            description.append(("Is", "Land"))
 
         request.session['animal_description'] = description
 
@@ -448,3 +463,44 @@ def ask(request):
         return render(request, 'ask.html', { 'ask_response': res['boolean'], 'animal_ask_form': animal_ask_form })
 
     return render(request, 'ask.html', { 'animal_ask_form': animal_ask_form })
+
+def inferences(request):
+    """Renders the ask page."""
+    assert isinstance(request, HttpRequest)
+
+    if 'insert-land-inference' in request.POST:
+        update = """
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX animalc: <http://zoo.org/class/>
+                PREFIX zoop: <http://zoo.org/pred/>
+                INSERT {
+                    ?s a animalc:Land.
+                }
+                WHERE {
+                    ?s a animalc:Animal.
+                    filter NOT EXISTS { ?s zoop:is "Airborne". }.
+                    filter NOT EXISTS { ?s zoop:is "Aquatic". }.
+                }
+                """
+        
+        payload_query = { "update": update }
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+    if 'insert-nobackbone-inference' in request.POST:
+        update = """
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX animalc: <http://zoo.org/class/>
+                PREFIX zoop: <http://zoo.org/pred/>
+                INSERT {
+                ?s a animalc:No-Backbone.
+                }
+                WHERE {
+                    ?s a animalc:Animal.
+                    filter NOT EXISTS { ?s zoop:has "Backbone". }.
+                }
+                """
+        
+        payload_query = { "update": update }
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+    return render(request, 'inferences.html')

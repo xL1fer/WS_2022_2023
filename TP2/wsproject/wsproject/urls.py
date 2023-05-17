@@ -23,4 +23,5 @@ urlpatterns = [
     path('configs', views.configs, name='configs'),
     path('queries', views.queries, name='queries'),
     path('ask', views.ask, name='ask'),
+    path('inferences', views.inferences, name='inferences'),
 ]

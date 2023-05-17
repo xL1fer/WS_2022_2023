@@ -65,9 +65,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .m-title {
-    font-size: 4.688rem;
+    font-size: 2.688rem;
     text-align: center;
     margin-bottom: 5%;
+}
+@media (min-width: 820px) {
+	.m-title {
+		font-size: 4.688rem;
+	}
 }
 
 .s-title {
@@ -174,7 +179,7 @@ button {
     transition: ease 200ms;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     background-color: rgb(180, 180, 180);
 }
@@ -188,4 +193,68 @@ input {
     padding: 1% 0;
     border: 1px solid gray;
     text-align: center;
+}
+
+/************************************************/
+/*           Inferences Page Styling            */
+/************************************************/
+
+th, td:not(.empty, .invertebrate) {
+    border: 1px solid rgb(170, 170, 170);
+    text-align: center;
+    line-height: 5rem;
+}
+
+.empty {
+    border-right: 1px solid rgb(170, 170, 170);
+    text-align: center;
+    line-height: 5rem;
+}
+
+.invertebrate {
+    border-bottom: 1px solid rgb(170, 170, 170);
+    border-right: 1px solid rgb(170, 170, 170);
+    text-align: center;
+    line-height: 5rem;
+}
+
+
+.pyramid-item {
+    font-size: 1.0rem;
+    padding: 1rem;
+}
+@media (min-width: 820px) {
+	.pyramid-item  {
+		font-size: 1.3rem;
+	}
+}
+
+.table-row1 {
+    background-color: rgb(255, 255, 216);
+}
+
+.table-row2 {
+    background-color: rgb(255, 234, 216);
+}
+
+.table-row3 {
+    background-color: rgb(255, 216, 216);
+}
+
+.table-row4 {
+    background-color: rgb(255, 200, 200);
+}
+
+.button-inference {
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    border: 1px solid gray;
+    width: 20%;
+    transition: ease 200ms;
+    margin: 0 0 1rem 0;
+}
+
+.button-inference:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
 }
