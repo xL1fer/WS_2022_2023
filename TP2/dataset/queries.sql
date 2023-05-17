@@ -1,17 +1,3 @@
--- Land animals
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX animalc: <http://zoo.org/class/>
-PREFIX zoop: <http://zoo.org/pred/>
-CONSTRUCT {
-	?s a animalc:Land.
-}
-WHERE {
-    ?s a animalc:Animal.
-	filter NOT EXISTS { ?s zoop:is "Airborne". }.
-	filter NOT EXISTS { ?s zoop:is "Aquatic". }.
-}
-
-
 -- Arthropod animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
@@ -110,6 +96,20 @@ WHERE {
 }
 
 
+-- Land animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+CONSTRUCT {
+	?s a animalc:Land.
+}
+WHERE {
+    ?s a animalc:Animal.
+	filter NOT EXISTS { ?s zoop:is "Airborne". }.
+	filter NOT EXISTS { ?s zoop:is "Aquatic". }.
+}
+
+
 -- No-Backbone animals
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX animalc: <http://zoo.org/class/>
@@ -120,6 +120,20 @@ CONSTRUCT {
 WHERE {
     ?s a animalc:Animal.
 	filter NOT EXISTS { ?s zoop:has "Backbone". }.
+}
+
+
+-- Mammal animals
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX animalc: <http://zoo.org/class/>
+PREFIX zoop: <http://zoo.org/pred/>
+PREFIX zooc: <http://zoo.org/class/id/>
+CONSTRUCT {
+   ?s a animalc:Mammal.
+}
+WHERE {
+    ?s a animalc:Animal.
+	?s zoop:class zooc:1.
 }
 
 

@@ -200,15 +200,21 @@ input {
 /************************************************/
 
 th, td:not(.empty, .invertebrate) {
-    border: 1px solid rgb(170, 170, 170);
+    border: 1px solid rgb(120, 120, 120);
     text-align: center;
     line-height: 5rem;
+}
+
+td:not(.empty):hover, th:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
 }
 
 .empty {
     border-right: 1px solid rgb(170, 170, 170);
     text-align: center;
     line-height: 5rem;
+    background: rgb(255,216,216);
+    background: linear-gradient(180deg, rgba(255,216,216,1) 75%, rgba(255,205,205,1) 100%);
 }
 
 .invertebrate {
@@ -216,17 +222,8 @@ th, td:not(.empty, .invertebrate) {
     border-right: 1px solid rgb(170, 170, 170);
     text-align: center;
     line-height: 5rem;
-}
-
-
-.pyramid-item {
-    font-size: 1.0rem;
-    padding: 1rem;
-}
-@media (min-width: 820px) {
-	.pyramid-item  {
-		font-size: 1.3rem;
-	}
+    background: rgb(255,200,200);
+    background: linear-gradient(360deg, rgba(255,200,200,1) 75%, rgba(255,205,205,1) 100%);
 }
 
 .table-row1 {
@@ -245,6 +242,7 @@ th, td:not(.empty, .invertebrate) {
     background-color: rgb(255, 200, 200);
 }
 
+/*
 .button-inference {
     background-color: rgb(255, 255, 255);
     border-radius: 7px;
@@ -258,3 +256,4 @@ th, td:not(.empty, .invertebrate) {
     cursor: pointer;
     background-color: rgb(230, 230, 230);
 }
+*/
