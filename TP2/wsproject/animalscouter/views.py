@@ -580,14 +580,32 @@ def inferences(request):
             #print(e['animal_name']['value'])
 
         # dbpedia lookup
+
+        dbpedia_dict = {
+            'Animal': 'Animal',
+            'Backbone': 'Bone',
+            'No-Backbone': 'Bone',
+            'Warm-Blood': 'Lymph',
+            'Cold-Blood': 'Lymph',
+            'Arthropod': 'Species',
+            'Mammal': 'Mammal',
+            'Bird': 'Bird',
+            'Reptile': 'Reptile',
+            'Fish': 'Fish',
+            'Amphibian': 'Amphibian',
+            'Insect': 'Insect',
+            'Invertebrate': 'Species'
+        }
+
         query = """
                 select ?info
                 where {
-                    ?animal rdfs:label "Bird"@en.
+                    ?animal rdfs:label "_animal_type"@en.
                     ?animal rdfs:comment ?info.
                     filter(lang(?info)='en').
                 }
                 """
+        query = query.replace('_animal_type', dbpedia_dict[inference_entity])
         sparql.setQuery(query)
         results = sparql.query()
 
@@ -598,10 +616,11 @@ def inferences(request):
         query = """
                 select ?link
                 where {
-                    ?animal rdfs:label "Bird"@en.
+                    ?animal rdfs:label "_animal_type"@en.
                     ?animal dbo:wikiPageExternalLink ?link.
                 }
                 """
+        query = query.replace('_animal_type', dbpedia_dict[inference_entity])
         sparql.setQuery(query)
         results = sparql.query()
 
@@ -613,6 +632,6 @@ def inferences(request):
         #for link in inference_links:
         #    print(link)
 
-        return render(request, 'inferences.html', { 'session': request.session, 'inference_entity': inference_entity, 'inference_info': inference_info, 'inference_links': inference_links})
+        return render(request, 'inferences.html', { 'session': request.session, 'inference_entity': inference_entity, 'inference_info': inference_info, 'inference_links': inference_links, 'dbpedia_entity': dbpedia_dict[inference_entity] })
 
     return render(request, 'inferences.html')

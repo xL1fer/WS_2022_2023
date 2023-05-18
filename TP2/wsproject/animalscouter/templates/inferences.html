@@ -155,14 +155,14 @@
 {% endfor %}
 
 {% if inference_info %}
-    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{inference_entity}}</span> Entity Info</p>
+    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{dbpedia_entity}}</span> Entity Info</p>
     <div>
         {{inference_info}}
     </div>
 {% endif %}
 
 {% if inference_links %}
-    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{inference_entity}}</span> Entity Links</p>
+    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{dbpedia_entity}}</span> Entity Links</p>
     <div>
         {% for l in inference_links%}
             <div>
