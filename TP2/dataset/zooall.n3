@@ -67,6 +67,14 @@ zoop:legs rdf:type owl:DatatypeProperty ;
 rdfs:Property rdf:type owl:Class .
 
 
+###  http://zoo.org/class/Amphibian
+animalc:Amphibian rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty zoop:class ;
+                                        owl:hasValue <http://zoo.org/class/id/5>
+                                      ] .
+
+
 ###  http://zoo.org/class/Animal
 animalc:Animal rdf:type owl:Class .
 
@@ -86,6 +94,14 @@ animalc:Backbone rdf:type owl:Class ;
                                                      animalc:Warm-Blood
                                                    )
                                      ] .
+
+
+###  http://zoo.org/class/Bird
+animalc:Bird rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty zoop:class ;
+                                   owl:hasValue <http://zoo.org/class/id/2>
+                                 ] .
 
 
 ###  http://zoo.org/class/Class
@@ -118,6 +134,30 @@ animalc:Cold-Blood rdf:type owl:Class ;
                                        ] .
 
 
+###  http://zoo.org/class/Fish
+animalc:Fish rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty zoop:class ;
+                                   owl:hasValue <http://zoo.org/class/id/4>
+                                 ] .
+
+
+###  http://zoo.org/class/Insect
+animalc:Insect rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty zoop:class ;
+                                     owl:hasValue <http://zoo.org/class/id/6>
+                                   ] .
+
+
+###  http://zoo.org/class/Invertebrate
+animalc:Invertebrate rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Restriction ;
+                                           owl:onProperty zoop:class ;
+                                           owl:hasValue <http://zoo.org/class/id/7>
+                                         ] .
+
+
 ###  http://zoo.org/class/Land
 animalc:Land rdf:type owl:Class ;
              owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Class ;
@@ -137,6 +177,14 @@ animalc:Land rdf:type owl:Class ;
                                  ] .
 
 
+###  http://zoo.org/class/Mammal
+animalc:Mammal rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty zoop:class ;
+                                     owl:hasValue <http://zoo.org/nurt/id/1>
+                                   ] .
+
+
 ###  http://zoo.org/class/No-Backbone
 animalc:No-Backbone rdf:type owl:Class ;
                     owl:equivalentClass [ rdf:type owl:Class ;
@@ -149,6 +197,14 @@ animalc:No-Backbone rdf:type owl:Class ;
 
 ###  http://zoo.org/class/Nurt
 animalc:Nurt rdf:type owl:Class .
+
+
+###  http://zoo.org/class/Reptile
+animalc:Reptile rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty zoop:class ;
+                                      owl:hasValue <http://zoo.org/class/id/3>
+                                    ] .
 
 
 ###  http://zoo.org/class/Warm-Blood

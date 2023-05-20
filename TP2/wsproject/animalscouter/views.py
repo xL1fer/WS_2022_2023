@@ -17,6 +17,13 @@ client = ApiClient(endpoint=endpoint)
 accessor = GraphDBApi(client)
 
 """
+    SPARQLWrapper imports and initializations
+"""
+from SPARQLWrapper import SPARQLWrapper2
+
+sparql = SPARQLWrapper2("https://dbpedia.org/sparql")
+
+"""
     Application views
 """
 
@@ -284,13 +291,25 @@ def queries(request):
                     ?animal_id ?p ?o.
                 }
                 """
-        
         query = query.replace("_animal_name", request.POST['animal_item'].replace("_", " "))
-
         payload_query = { "query": query }
         res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
-
         res = json.loads(res)
+
+        land_query = """
+                    base <http://zoo.org/>
+                    prefix pred: <http://zoo.org/pred/>
+                    prefix animalc: <http://zoo.org/class/>
+                    select ?animal_id ?p ?o
+                    where {
+                        ?animal_id pred:name "_animal_name".
+                        ?animal_id a animalc:Land.
+                    }
+                    """
+        land_query = land_query.replace("_animal_name", request.POST['animal_item'].replace("_", " "))
+        payload_land_query = { "query": land_query }
+        res_land = accessor.sparql_select(body=payload_land_query, repo_name=repo_name)
+        res_land = json.loads(res_land)
 
         description = []
         for e in res['results']['bindings']:
@@ -351,6 +370,9 @@ def queries(request):
 
             description.append((key.title(), value.title()))
 
+        if (len(res_land['results']['bindings']) > 0):
+            description.append(("Is", "Land"))
+
         request.session['animal_description'] = description
 
         return render(request, 'queries.html', { 'session': request.session, 'animal_class_form': animal_class_form, 'animal_nurturing_form': animal_nurturing_form, 'animal_legs_form': animal_legs_form })
@@ -368,20 +390,32 @@ def queries(request):
                     'Milk': '<http://zoo.org/nurt/id/2>'
                     }
         
-        query = """
-                base <http://zoo.org/>
-                prefix pred: <http://zoo.org/pred/>
-                prefix class: <http://zoo.org/class/id/>
-                select ?animal_name
-                where {
-                    ?animal_id pred:_pred_name _obj_name.
-                    ?animal_id pred:name ?animal_name.
-                }
-                """
-        
         pred = list(request.POST.keys())[1]
-        obj = ''
 
+        if request.POST[pred] != 'Land':
+            query = """
+                    base <http://zoo.org/>
+                    prefix pred: <http://zoo.org/pred/>
+                    prefix class: <http://zoo.org/class/id/>
+                    select ?animal_name
+                    where {
+                        ?animal_id pred:_pred_name _obj_name.
+                        ?animal_id pred:name ?animal_name.
+                    }
+                    """
+        else:
+            query = """
+                    base <http://zoo.org/>
+                    prefix pred: <http://zoo.org/pred/>
+                    prefix animalc: <http://zoo.org/class/>
+                    select ?animal_name
+                    where {
+                        ?animal_id a animalc:Land.
+                        ?animal_id pred:name ?animal_name.
+                    }
+                    """
+        
+        obj = ''
         if pred == 'Class' or pred == 'Nurt':
             obj += obj_dict[request.POST[pred]]
         else:
@@ -448,3 +482,156 @@ def ask(request):
         return render(request, 'ask.html', { 'ask_response': res['boolean'], 'animal_ask_form': animal_ask_form })
 
     return render(request, 'ask.html', { 'animal_ask_form': animal_ask_form })
+
+def inferences(request):
+    """Renders the ask page."""
+    assert isinstance(request, HttpRequest)
+
+    print(request.POST)
+
+    # insert land animals inference
+    if 'insert-land-inference' in request.POST:
+        update = """
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX animalc: <http://zoo.org/class/>
+                PREFIX zoop: <http://zoo.org/pred/>
+                INSERT {
+                    ?s a animalc:Land.
+                }
+                WHERE {
+                    ?s a animalc:Animal.
+                    filter NOT EXISTS { ?s zoop:is "Airborne". }.
+                    filter NOT EXISTS { ?s zoop:is "Aquatic". }.
+                }
+                """
+        
+        payload_query = { "update": update }
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Land" animals inference' })
+    
+    # insert no-backbone animals inference
+    elif 'insert-nobackbone-inference' in request.POST:
+        update = """
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX animalc: <http://zoo.org/class/>
+                PREFIX zoop: <http://zoo.org/pred/>
+                INSERT {
+                    ?s a animalc:No-Backbone.
+                }
+                WHERE {
+                    ?s a animalc:Animal.
+                    filter NOT EXISTS { ?s zoop:has "Backbone". }.
+                }
+                """
+        
+        payload_query = { "update": update }
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "No-BackBone" animals inference' })
+    
+    # insert mammal animals inference
+    elif 'insert-mammal-inference' in request.POST:
+        update = """
+                PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+                PREFIX animalc: <http://zoo.org/class/>
+                PREFIX zoop: <http://zoo.org/pred/>
+                PREFIX zooc: <http://zoo.org/class/id/>
+                INSERT {
+                    ?s a animalc:Mammal.
+                }
+                WHERE {
+                    ?s a animalc:Animal.
+                    ?s zoop:class zooc:1.
+                }
+                """
+        
+        payload_query = { "update": update }
+        res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
+
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Mammal" animals inference' })
+    
+    # search for given inference
+    elif len(list(request.POST.keys())) > 1:
+        inference_entity = request.POST[list(request.POST.keys())[1]]
+
+        # dataset lookup
+        query = """
+                base <http://zoo.org/>
+                prefix pred: <http://zoo.org/pred/>
+                prefix animalc: <http://zoo.org/class/>
+                select ?animal_name
+                where {
+                    ?animal_id a animalc:_animal_inference.
+                    ?animal_id pred:name ?animal_name.
+                }
+                """
+
+        query = query.replace("_animal_inference", inference_entity)
+
+        payload_query = { "query": query }
+        res = accessor.sparql_select(body=payload_query, repo_name=repo_name)
+
+        res = json.loads(res)
+
+        request.session['animal_list'] = []
+        for e in res['results']['bindings']:
+            request.session['animal_list'].append(e['animal_name']['value'])
+            #print(e['animal_name']['value'])
+
+        # dbpedia lookup
+
+        dbpedia_dict = {
+            'Animal': 'Animal',
+            'Backbone': 'Bone',
+            'No-Backbone': 'Bone',
+            'Warm-Blood': 'Lymph',
+            'Cold-Blood': 'Lymph',
+            'Arthropod': 'Species',
+            'Mammal': 'Mammal',
+            'Bird': 'Bird',
+            'Reptile': 'Reptile',
+            'Fish': 'Fish',
+            'Amphibian': 'Amphibian',
+            'Insect': 'Insect',
+            'Invertebrate': 'Species'
+        }
+
+        query = """
+                select ?info
+                where {
+                    ?animal rdfs:label "_animal_type"@en.
+                    ?animal rdfs:comment ?info.
+                    filter(lang(?info)='en').
+                }
+                """
+        query = query.replace('_animal_type', dbpedia_dict[inference_entity])
+        sparql.setQuery(query)
+        results = sparql.query()
+
+        inference_info = ''
+        for r in results.bindings:
+            inference_info = r["info"].value
+
+        query = """
+                select ?link
+                where {
+                    ?animal rdfs:label "_animal_type"@en.
+                    ?animal dbo:wikiPageExternalLink ?link.
+                }
+                """
+        query = query.replace('_animal_type', dbpedia_dict[inference_entity])
+        sparql.setQuery(query)
+        results = sparql.query()
+
+        inference_links = []
+        for r in results.bindings:
+            inference_links.append(r["link"].value)
+
+        #print('\n' + inference_info + '\n')
+        #for link in inference_links:
+        #    print(link)
+
+        return render(request, 'inferences.html', { 'session': request.session, 'inference_entity': inference_entity, 'inference_info': inference_info, 'inference_links': inference_links, 'dbpedia_entity': dbpedia_dict[inference_entity] })
+
+    return render(request, 'inferences.html')

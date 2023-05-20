@@ -55,17 +55,19 @@
             <p style="margin-top: 3%; margin-bottom: 3%;">Animal Description</p>
         {% endif %}
 
+        <span class="h-card">
         {% for d in session.animal_description %}
         <div>
             <form id="{{d.0}}_{{d.1}}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="a-item">
                     <input type="hidden" name="{{d.0}}" value={{d.1}} />
-                    <a onclick="document.getElementById('{{d.0}}_{{d.1}}').submit();">{{d.0}} <span style="font-weight: bold;">{{d.1}}</span></a>
+                    <a onclick="document.getElementById('{{d.0}}_{{d.1}}').submit();">{{d.0}} <span class="p-{{d.0|lower}}" style="font-weight: bold;">{{d.1}}</span></a>
                 </div>
             </form>
         </div>
         {% endfor %}
+        </span>
 
     </div>
 </div>

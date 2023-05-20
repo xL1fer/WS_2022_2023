@@ -65,9 +65,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .m-title {
-    font-size: 4.688rem;
+    font-size: 2.688rem;
     text-align: center;
     margin-bottom: 5%;
+}
+@media (min-width: 820px) {
+	.m-title {
+		font-size: 4.688rem;
+	}
 }
 
 .s-title {
@@ -174,7 +179,7 @@ button {
     transition: ease 200ms;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     background-color: rgb(180, 180, 180);
 }
@@ -189,3 +194,66 @@ input {
     border: 1px solid gray;
     text-align: center;
 }
+
+/************************************************/
+/*           Inferences Page Styling            */
+/************************************************/
+
+th, td:not(.empty, .invertebrate) {
+    border: 1px solid rgb(120, 120, 120);
+    text-align: center;
+    line-height: 5rem;
+}
+
+td:not(.empty):hover, th:hover {
+    background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+.empty {
+    border-right: 1px solid rgb(120, 120, 120);
+    text-align: center;
+    line-height: 5rem;
+    background: rgb(255,216,216);
+    background: linear-gradient(180deg, rgba(255,216,216,1) 75%, rgba(255,205,205,1) 100%);
+}
+
+.invertebrate {
+    border-bottom: 1px solid rgb(120, 120, 120);
+    border-right: 1px solid rgb(120, 120, 120);
+    text-align: center;
+    line-height: 5rem;
+    background: rgb(255,200,200);
+    background: linear-gradient(360deg, rgba(255,200,200,1) 75%, rgba(255,205,205,1) 100%);
+}
+
+.table-row1 {
+    background-color: rgb(255, 255, 216);
+}
+
+.table-row2 {
+    background-color: rgb(255, 234, 216);
+}
+
+.table-row3 {
+    background-color: rgb(255, 216, 216);
+}
+
+.table-row4 {
+    background-color: rgb(255, 200, 200);
+}
+
+/*
+.button-inference {
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    border: 1px solid gray;
+    width: 20%;
+    transition: ease 200ms;
+    margin: 0 0 1rem 0;
+}
+
+.button-inference:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
+*/

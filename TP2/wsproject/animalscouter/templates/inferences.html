@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h1 class="m-title">[ Inferences ]</h1>
+
+{% if insert_response %}
+<div class="center">
+    {{insert_response}}
+</div>
+{% endif %}
+
+<div style="text-align: center; margin-bottom: 1rem;">
+    <form id="insert-land-inference-form" method="post" enctype="multipart/form-data" style="text-decoration: underline; ">
+        {% csrf_token %}
+        <input type="hidden" name="insert-land-inference" value="land" />
+    
+        <!--<button class="button-inference" type="submit">Insert Land</button>-->
+        <div class="a-item">
+            <a onclick="document.getElementById('insert-land-inference-form').submit();">Insert <span style="font-weight: bold;">Land</span> Animals Inference</a>
+        </div>
+    </form>
+
+    <form id="insert-nobackbone-inference-form" method="post" enctype="multipart/form-data" style="text-decoration: underline; ">
+        {% csrf_token %}
+        <input type="hidden" name="insert-nobackbone-inference" value="nobackbone" />
+    
+        <!--<button class="button-inference" type="submit">Insert No-Backbone</button>-->
+        <div class="a-item">
+            <a onclick="document.getElementById('insert-nobackbone-inference-form').submit();">Insert <span style="font-weight: bold;">No-Backbone</span> Animals Inference</a>
+        </div>
+    </form>
+
+    <form id="insert-mammal-inference-form" method="post" enctype="multipart/form-data" style="text-decoration: underline; ">
+        {% csrf_token %}
+        <input type="hidden" name="insert-mammal-inference" value="mammal" />
+    
+        <!--<button class="button-inference" type="submit">Insert Mammal</button>-->
+        <div class="a-item">
+            <a onclick="document.getElementById('insert-mammal-inference-form').submit();">Insert <span style="font-weight: bold;">Mammal</span> Animals Inference</a>
+        </div>
+    </form>
+    
+</div>
+
+<table class="center">
+    <tr class="table-row1">
+        <th colspan="7">
+            <form id="animal-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="animal-inference" value="Animal" />
+                <div class="a-item" onclick="document.getElementById('animal-inference-form').submit();"><a>Animal</a></div>
+            </form>
+        </th>
+    </tr>
+    <tr class="table-row2">
+        <td colspan="5">
+            <form id="backbone-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="backbone-inference" value="Backbone" />
+                <div class="a-item" onclick="document.getElementById('backbone-inference-form').submit();"><a>Backbone</a></div>
+            </form>
+        </td>
+        <td colspan="2">
+            <form id="nobackbone-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="nobackbone-inference" value="No-Backbone" />
+                <div class="a-item" onclick="document.getElementById('nobackbone-inference-form').submit();"><a>No-Backbone</a></div>
+            </form>
+        </td>
+    </tr>
+    <tr class="table-row3">
+        <td colspan="2">
+            <form id="warmblood-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="warmblood-inference" value="Warm-Blood" />
+                <div class="a-item" onclick="document.getElementById('warmblood-inference-form').submit();"><a>Warm-Blood</a></div>
+            </form>
+        </td>
+        <td colspan="3">
+            <form id="coldblood-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="coldblood-inference" value="Cold-Blood" />
+                <div class="a-item" onclick="document.getElementById('coldblood-inference-form').submit();"><a>Cold-Blood</a></div>
+            </form>
+        </td>
+        <td colspan="1">
+            <form id="arthropod-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="arthropod-inference" value="Arthropod" />
+                <div class="a-item" onclick="document.getElementById('arthropod-inference-form').submit();"><a>Arthropod</a></div>
+            </form>
+        </td>
+        <td colspan="1" class="empty"></td>
+    </tr>
+    <tr class="table-row4">
+        <td>
+            <form id="mammal-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="mammal-inference" value="Mammal" />
+                <div class="a-item" onclick="document.getElementById('mammal-inference-form').submit();"><a>Mammal</a></div>
+            </form>
+        </td>
+        <td>
+            <form id="bird-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="bird-inference" value="Bird" />
+                <div class="a-item" onclick="document.getElementById('bird-inference-form').submit();"><a>Bird</a></div>
+            </form>
+        </td>
+        <td>
+            <form id="reptile-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="reptile-inference" value="Reptile" />
+                <div class="a-item" onclick="document.getElementById('reptile-inference-form').submit();"><a>Reptile</a></div>
+            </form>
+        </td>
+        <td>
+            <form id="fish-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="fish-inference" value="Fish" />
+                <div class="a-item" onclick="document.getElementById('fish-inference-form').submit();"><a>Fish</a></div>
+            </form>
+        </td>
+        <td>
+            <form id="amphibian-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="amphibian-inference" value="Amphibian" />
+                <div class="a-item" onclick="document.getElementById('amphibian-inference-form').submit();"><a>Amphibian</a></div>
+            </form>
+        </td>
+        <td>
+            <form id="insect-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="insect-inference" value="Insect" />
+                <div class="a-item" onclick="document.getElementById('insect-inference-form').submit();"><a>Insect</a></div>
+            </form>
+        </td>
+        <td class="invertebrate">
+            <form id="invertebrate-inference-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="invertebrate-inference" value="Invertebrate" />
+                <div class="a-item" onclick="document.getElementById('invertebrate-inference-form').submit();"><a>Invertebrate</a></div>
+            </form>
+        </td>
+    </tr>
+</table>
+
+{% if inference_entity %}
+    <p style="margin-top: 3%;"><span style="font-weight: bold;">{{inference_entity}}</span> Inferred Entities</p>
+{% endif %}
+
+{% for a in session.animal_list%}
+    <span style="padding-right: 2rem;">{{a}}</span>
+{% endfor %}
+
+{% if inference_info %}
+    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{dbpedia_entity}}</span> Entity Info</p>
+    <div>
+        {{inference_info}}
+    </div>
+{% endif %}
+
+{% if inference_links %}
+    <p style="margin-top: 3%;">DBpedia <span style="font-weight: bold;">{{dbpedia_entity}}</span> Entity Links</p>
+    <div>
+        {% for l in inference_links%}
+            <div>
+                <a href="{{l}}" target="_blank">{{l}}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}
