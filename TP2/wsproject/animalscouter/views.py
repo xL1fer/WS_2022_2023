@@ -21,7 +21,8 @@ accessor = GraphDBApi(client)
 """
 from SPARQLWrapper import SPARQLWrapper2
 
-sparql = SPARQLWrapper2("https://dbpedia.org/sparql")
+sparqlDBpedia = SPARQLWrapper2("https://dbpedia.org/sparql")
+sparqlWikidata = SPARQLWrapper2("https://query.wikidata.org/sparql")
 
 """
     Application views
@@ -489,6 +490,27 @@ def inferences(request):
 
     print(request.POST)
 
+    # wikidata lookup
+    sparqlWikidata.setQuery("""
+                            PREFIX wd: <http://www.wikidata.org/entity/>
+                            PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+                            SELECT ?item ?itemLabel
+                            WHERE 
+                            {
+                                wd:Q729 wdt:P2716 ?item .
+                                SERVICE wikibase:label {
+                                    bd:serviceParam
+                                    wikibase:language "en".
+                                }
+                            }
+                            """)
+    # wdt:P2716 -> diversity image
+    # wdt:P18   -> bear image
+    wikidata_info = ''
+    for result in sparqlWikidata.query().bindings:
+        #print('%s: %s' % (result["item"].value, result["itemLabel"].value))
+        wikidata_info = result["itemLabel"].value
+
     # insert land animals inference
     if 'insert-land-inference' in request.POST:
         update = """
@@ -508,7 +530,7 @@ def inferences(request):
         payload_query = { "update": update }
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
-        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Land" animals inference' })
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Land" animals inference', 'wikidata_info': wikidata_info })
     
     # insert no-backbone animals inference
     elif 'insert-nobackbone-inference' in request.POST:
@@ -528,7 +550,7 @@ def inferences(request):
         payload_query = { "update": update }
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
-        return render(request, 'inferences.html', { 'insert_response': 'Inserted "No-BackBone" animals inference' })
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "No-BackBone" animals inference', 'wikidata_info': wikidata_info })
     
     # insert mammal animals inference
     elif 'insert-mammal-inference' in request.POST:
@@ -549,7 +571,7 @@ def inferences(request):
         payload_query = { "update": update }
         res = accessor.sparql_update(body=payload_query, repo_name=repo_name)
 
-        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Mammal" animals inference' })
+        return render(request, 'inferences.html', { 'insert_response': 'Inserted "Mammal" animals inference', 'wikidata_info': wikidata_info })
     
     # search for given inference
     elif len(list(request.POST.keys())) > 1:
@@ -580,7 +602,6 @@ def inferences(request):
             #print(e['animal_name']['value'])
 
         # dbpedia lookup
-
         dbpedia_dict = {
             'Animal': 'Animal',
             'Backbone': 'Bone',
@@ -606,8 +627,8 @@ def inferences(request):
                 }
                 """
         query = query.replace('_animal_type', dbpedia_dict[inference_entity])
-        sparql.setQuery(query)
-        results = sparql.query()
+        sparqlDBpedia.setQuery(query)
+        results = sparqlDBpedia.query()
 
         inference_info = ''
         for r in results.bindings:
@@ -621,8 +642,8 @@ def inferences(request):
                 }
                 """
         query = query.replace('_animal_type', dbpedia_dict[inference_entity])
-        sparql.setQuery(query)
-        results = sparql.query()
+        sparqlDBpedia.setQuery(query)
+        results = sparqlDBpedia.query()
 
         inference_links = []
         for r in results.bindings:
@@ -632,6 +653,6 @@ def inferences(request):
         #for link in inference_links:
         #    print(link)
 
-        return render(request, 'inferences.html', { 'session': request.session, 'inference_entity': inference_entity, 'inference_info': inference_info, 'inference_links': inference_links, 'dbpedia_entity': dbpedia_dict[inference_entity] })
+        return render(request, 'inferences.html', { 'session': request.session, 'inference_entity': inference_entity, 'inference_info': inference_info, 'inference_links': inference_links, 'wikidata_info': wikidata_info, 'dbpedia_entity': dbpedia_dict[inference_entity] })
 
-    return render(request, 'inferences.html')
+    return render(request, 'inferences.html', { 'wikidata_info': wikidata_info })
