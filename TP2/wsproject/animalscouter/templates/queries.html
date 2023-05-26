@@ -39,15 +39,17 @@
             <p style="margin-top: 3%;"><span style="font-weight: bold;">{{scout_description}}</span> Scouted Animals</p>
         {% endif %}
 
+        <span class="h-card">
         {% for a in session.animal_list%}
         <form id="animal_{{a.0}}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="a-item">
                 <input type="hidden" name="animal_item" value={{a.0}} />
-                <a onclick="document.getElementById('animal_{{a.0}}').submit();">{{a.1}}</a>
+                <a onclick="document.getElementById('animal_{{a.0}}').submit();"><span class="p-scoutedanimals">{{a.1}}</span></a>
             </div>
         </form>
         {% endfor %}
+        </span>
     </div>
     <!-- selected animal description -->
     <div class="column">
