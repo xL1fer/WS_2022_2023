@@ -1,5 +1,5 @@
 # Animal Scouter
-Master's in Computer Engineering's first project under the course of Web Semantics at the University of Aveiro.
+Master's in Computer Engineering's second project under the course of Web Semantics at the University of Aveiro.
 
 # Setup
 
