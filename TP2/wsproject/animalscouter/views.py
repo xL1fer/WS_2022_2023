@@ -507,9 +507,16 @@ def inferences(request):
     # wdt:P2716 -> diversity image
     # wdt:P18   -> bear image
     wikidata_info = ''
-    for result in sparqlWikidata.query().bindings:
-        #print('%s: %s' % (result["item"].value, result["itemLabel"].value))
-        wikidata_info = result["itemLabel"].value
+    results = None
+    try:
+        results = sparqlWikidata.query()
+    except:
+        print("Except: Wikidata query returned an exception")
+
+    if results:
+        for r in results.bindings:
+            #print('%s: %s' % (result["item"].value, result["itemLabel"].value))
+            wikidata_info = r["itemLabel"].value
 
     # insert land animals inference
     if 'insert-land-inference' in request.POST:
@@ -628,11 +635,16 @@ def inferences(request):
                 """
         query = query.replace('_animal_type', dbpedia_dict[inference_entity])
         sparqlDBpedia.setQuery(query)
-        results = sparqlDBpedia.query()
+        results = None
+        try:
+            results = sparqlDBpedia.query()
+        except:
+            print("Except: DPpedia query returned an exception")
 
         inference_info = ''
-        for r in results.bindings:
-            inference_info = r["info"].value
+        if results:
+            for r in results.bindings:
+                inference_info = r["info"].value
 
         query = """
                 select ?link
@@ -643,11 +655,16 @@ def inferences(request):
                 """
         query = query.replace('_animal_type', dbpedia_dict[inference_entity])
         sparqlDBpedia.setQuery(query)
-        results = sparqlDBpedia.query()
+        results = None
+        try:
+            results = sparqlDBpedia.query()
+        except:
+            print("Except: DPpedia query returned an exception")
 
         inference_links = []
-        for r in results.bindings:
-            inference_links.append(r["link"].value)
+        if results:
+            for r in results.bindings:
+                inference_links.append(r["link"].value)
 
         #print('\n' + inference_info + '\n')
         #for link in inference_links:
